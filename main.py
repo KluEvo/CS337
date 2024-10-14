@@ -1,8 +1,8 @@
 import json
 import re
-import nltk
-from nltk import word_tokenize, pos_tag
-from nltk.corpus import stopwords
+# import nltk
+# from nltk import word_tokenize, pos_tag
+# from nltk.corpus import stopwords
 import spacy
 from fuzzywuzzy import process
 
@@ -11,14 +11,6 @@ from fuzzywuzzy import fuzz
 # Load the English language model
 nlp = spacy.load("en_core_web_sm")
 
-# Ensure necessary downloads
-# nltk.download('punkt')
-# nltk.download('averaged_perceptron_tagger')
-# nltk.download('stopwords')
-# Load spaCy model
-
-# Load stopwords
-STOPWORDS = set(stopwords.words('english'))
 
 def load_tweets(json_file):
     with open(json_file, 'r') as file:
@@ -142,12 +134,6 @@ def match_format(text, known_award, pattern):
 
     return False
 
-# # Example usage
-# baseNO = "'Silver Linings Playbook' Review http://t.co/pgrK5zjq via @examinercom  Jennifer Lawrence wins Best Actress  at #GoldenGlobes  Congrats!"
-# known_person = "Jennifer Lawrence"
-# known_award = "Golden Globe Award for Best Actress in a Motion Picture – Drama"
-# print(match_format(baseNO, known_award, pattern=r"(.+?)\s+wins\s+(.+)"))
-
 # def find_json_files():
 #     json_files = []
 #     for file_name in os.listdir(os.getcwd()):
@@ -162,7 +148,7 @@ def match_format(text, known_award, pattern):
 
 
 json_file = "gg2013.json"
-award_name = "Best Supporting Actress in a Motion Picture – Musical or Comedy"
+award_name = "Best Actress in a Motion Picture – Musical or Comedy"
 nominees = [ "Jennifer Lawrence", "Emily Blunt", "Judi Dench", "Maggie Smith", "Meryl Streep"]
 
 winner = find_winner(award_name, nominees, json_file)
