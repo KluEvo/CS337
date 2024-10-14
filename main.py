@@ -48,10 +48,8 @@ def detect_name(name, text):
         return False
 
     # Check each entity against nameArr
-    detected_names = [entity for entity in entities if matches_name(entity)]
+    return any(matches_name(entity) for entity in entities)
 
-    # what we really want is whether detected names is empty, but detected_names will eval to true when not empty, and false otherwise anyways
-    return detected_names
 
 
 def find_winner(award_name, nominees, json_file):
@@ -85,8 +83,8 @@ def find_winner(award_name, nominees, json_file):
             for nominee in nominees:
                 
                 # print(text + "\n")
-                if nominee in detect_name(nominee, person) 
-                nominee_mentions[nominee] += 1
+                if detect_name(nominee, person):
+                    nominee_mentions[nominee] += 1
         
 
     # Determine the nominee with the highest count
