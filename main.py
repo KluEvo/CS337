@@ -142,11 +142,11 @@ def match_format(text, known_award, pattern):
 
     return False
 
-# Example usage
-baseNO = "'Silver Linings Playbook' Review http://t.co/pgrK5zjq via @examinercom  Jennifer Lawrence wins Best Actress  at #GoldenGlobes  Congrats!"
-known_person = "Jennifer Lawrence"
-known_award = "Golden Globe Award for Best Actress in a Motion Picture – Drama"
-print(match_format(baseNO, known_award, pattern=r"(.+?)\s+wins\s+(.+)"))
+# # Example usage
+# baseNO = "'Silver Linings Playbook' Review http://t.co/pgrK5zjq via @examinercom  Jennifer Lawrence wins Best Actress  at #GoldenGlobes  Congrats!"
+# known_person = "Jennifer Lawrence"
+# known_award = "Golden Globe Award for Best Actress in a Motion Picture – Drama"
+# print(match_format(baseNO, known_award, pattern=r"(.+?)\s+wins\s+(.+)"))
 
 # def find_json_files():
 #     json_files = []
