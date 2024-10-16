@@ -1,8 +1,8 @@
 import json
 import re
-import nltk
-from nltk import word_tokenize, pos_tag
-from nltk.corpus import stopwords
+# import nltk
+# from nltk import word_tokenize, pos_tag
+# from nltk.corpus import stopwords
 import spacy
 from fuzzywuzzy import process
 
@@ -11,14 +11,6 @@ from fuzzywuzzy import fuzz
 # Load the English language model
 nlp = spacy.load("en_core_web_sm")
 
-# Ensure necessary downloads
-# nltk.download('punkt')
-# nltk.download('averaged_perceptron_tagger')
-# nltk.download('stopwords')
-# Load spaCy model
-
-# Load stopwords
-STOPWORDS = set(stopwords.words('english'))
 
 def load_tweets(json_file):
     with open(json_file, 'r') as file:
@@ -40,11 +32,13 @@ def detect_name(name, text):
 
     # Function to check if an entity matches any name in nameArr
     def matches_name(entity):
-        first_name, last_name = name.split()
-        if (fuzz.ratio(entity, first_name) > 50 or
-            fuzz.ratio(entity, last_name) > 50 or
-            fuzz.ratio(entity, name) > 50):
+        if (fuzz.ratio(entity, name) > 50):
             return True
+        nameParts = name.split()
+        for namePart in nameParts:
+            if (fuzz.ratio(entity, namePart) > 50):
+                return True    
+
         return False
 
     # Check each entity against nameArr
@@ -52,11 +46,29 @@ def detect_name(name, text):
 
 
 
+def check_humans(nominees):
+    for nom in nominees:
+        doc = nlp(nom)
+
+        # Extract named entities
+        entities = [ent.text for ent in doc.ents if ent.label_ in {"PERSON"}]
+        if not len(entities):
+            return False
+
+def detect_title(nominee, candidate):
+    if nominee.lower() in candidate.lower():
+        return True
+    return False
+
+
 def find_winner(award_name, nominees, json_file):
     skipper = 0
     total = 0
     # Load the tweets from the JSON file
     tweets = load_tweets(json_file)
+
+    
+    areHumans = check_humans(nominees)
 
     # Define regex pattern for identifying phrases related to winning
     win_patterns = [
@@ -73,17 +85,16 @@ def find_winner(award_name, nominees, json_file):
         # text = clean_text(tweet['text'])
         text = tweet['text']
         total += 1
-        if total % 5000 ==0:
+        if total % 5000 == 0:
             print(total)
 
         for pattern in win_patterns:
-            person = match_format(text, award_name, pattern)
-            if not person:    
+            candidate = match_format(text, award_name, pattern)
+            if not candidate:    
                 continue
             for nominee in nominees:
-                
                 # print(text + "\n")
-                if detect_name(nominee, person):
+                if (areHumans and detect_name(nominee, candidate)) or ((not areHumans) and detect_title(nominee, candidate)): 
                     nominee_mentions[nominee] += 1
         
 
@@ -142,12 +153,6 @@ def match_format(text, known_award, pattern):
 
     return False
 
-# # Example usage
-# baseNO = "'Silver Linings Playbook' Review http://t.co/pgrK5zjq via @examinercom  Jennifer Lawrence wins Best Actress  at #GoldenGlobes  Congrats!"
-# known_person = "Jennifer Lawrence"
-# known_award = "Golden Globe Award for Best Actress in a Motion Picture – Drama"
-# print(match_format(baseNO, known_award, pattern=r"(.+?)\s+wins\s+(.+)"))
-
 # def find_json_files():
 #     json_files = []
 #     for file_name in os.listdir(os.getcwd()):
@@ -162,8 +167,8 @@ def match_format(text, known_award, pattern):
 
 
 json_file = "gg2013.json"
-award_name = "Best Supporting Actress in a Motion Picture – Musical or Comedy"
-nominees = [ "Jennifer Lawrence", "Emily Blunt", "Judi Dench", "Maggie Smith", "Meryl Streep"]
+award_name = "Best Motion Picture - Drama"
+nominees = [ "Argo", "Django Unchained", "Life of Pi", "Lincoln", "Zero Dark Thirty"]
 
 winner = find_winner(award_name, nominees, json_file)
 print(f"The winner is: {winner}")
