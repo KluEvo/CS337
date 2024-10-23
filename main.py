@@ -12,24 +12,24 @@ from fuzzywuzzy import fuzz
 nlp = spacy.load("en_core_web_sm")
 
 
-def load_tweets(json_file):
+def loadTweets(json_file):
     with open(json_file, 'r') as file:
         tweets = json.load(file)
     return tweets
 
-def clean_text(text):
-    text = re.sub(r"http\S+|www\S+|https\S+", '', text, flags=re.MULTILINE)
-    text = re.sub(r'\W+', ' ', text)
-    return text.lower()
 
-# Function to detect names
-def detect_name(name, text):
+def namesInText(text):
     # Process the text with spaCy
     doc = nlp(text)
-
     # Extract named entities
     entities = [ent.text for ent in doc.ents if ent.label_ in {"PERSON"}]
+    if entities:
+        return entities
+    return False
 
+
+# Function to detect names
+def findName(name, text):
     # Function to check if an entity matches any name in nameArr
     def matches_name(entity):
         if (fuzz.ratio(entity, name) > 50):
@@ -42,11 +42,11 @@ def detect_name(name, text):
         return False
 
     # Check each entity against nameArr
-    return any(matches_name(entity) for entity in entities)
+    return any(matches_name(entity) for entity in namesInText(text))
 
 
 
-def check_humans(nominees):
+def checkHumans(nominees):
     for nom in nominees:
         doc = nlp(nom)
 
@@ -55,25 +55,32 @@ def check_humans(nominees):
         if not len(entities):
             return False
 
-def detect_title(nominee, candidate):
+def detectTitle(nominee, candidate):
     if nominee.lower() in candidate.lower():
         return True
     return False
 
 
-def find_winner(award_name, nominees, json_file):
+def findWinner(award_name, nominees, json_file):
     skipper = 0
     total = 0
     # Load the tweets from the JSON file
-    tweets = load_tweets(json_file)
+    tweets = loadTweets(json_file)
 
     
-    areHumans = check_humans(nominees)
+    areHumans = checkHumans(nominees)
+    award_match = "best "
+    # processing the award name to be more useful
+    if "supporting" in award_name:
+        award_match = award_name.replace("performance by an", "supporting").strip()
+    else:
+        award_match = award_name.replace("performance by an ", '').strip()
 
+    print(award_match)
     # Define regex pattern for identifying phrases related to winning
     win_patterns = [
         # r"(.+?)\s+won\s+(.+)",
-        # r"(.+?)\s+goes to\s+(.+)",
+        r"(.+?)\s+goes to\s+(.+)",
         r"(.+?)\s+wins\s+(.+)",
         # r"(.+?)\s+awarded\s+(.+)",
     ]
@@ -89,12 +96,12 @@ def find_winner(award_name, nominees, json_file):
             print(total)
 
         for pattern in win_patterns:
-            candidate = match_format(text, award_name, pattern)
+            candidate = matchFormat(text, award_match, pattern)
             if not candidate:    
                 continue
             for nominee in nominees:
                 # print(text + "\n")
-                if (areHumans and detect_name(nominee, candidate)) or ((not areHumans) and detect_title(nominee, candidate)): 
+                if (areHumans and findName(nominee, candidate)) or ((not areHumans) and detectTitle(nominee, candidate)): 
                     nominee_mentions[nominee] += 1
         
 
@@ -109,7 +116,7 @@ def find_winner(award_name, nominees, json_file):
     return winner
 
 
-def match_format(text, known_award, pattern):
+def matchFormat(text, known_award, pattern):
     # Regular expression to extract parts before and after "wins"
     matchRes = re.match(pattern, text)
 
@@ -127,7 +134,7 @@ def match_format(text, known_award, pattern):
         return False
 
     # Additional context check for awards to avoid confusion between similar categories
-    def matches_award_context(part, known):
+    def matchesContext(part, known):
         part_tokens = nlp(part.lower())
         part_tokens_list = [token.text for token in part_tokens]
 
@@ -148,7 +155,7 @@ def match_format(text, known_award, pattern):
 
 
     # Check if the extracted parts match the known person and award
-    if matches_award_context(award_part, known_award):
+    if matchesContext(award_part, known_award):
         return person_part
 
     return False
@@ -166,9 +173,14 @@ def match_format(text, known_award, pattern):
 # print(json_files_array)
 
 
-json_file = "gg2013.json"
-award_name = "Best Motion Picture - Drama"
-nominees = [ "Argo", "Django Unchained", "Life of Pi", "Lincoln", "Zero Dark Thirty"]
+if __name__ == "__main__":
+    json_file = "gg2013.json"
+    award_match = "best original song - motion picture"
+    nominees = [ "act of valor",
+                    "stand up guys",
+                    "the hunger games",
+                    "les miserables",
+                    "skyfall"]
 
-winner = find_winner(award_name, nominees, json_file)
-print(f"The winner is: {winner}")
+    winner = findWinner(award_match, nominees, json_file)
+    print(f"The winner is: {winner}")
