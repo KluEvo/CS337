@@ -23,8 +23,6 @@ def find_json_file_and_extract_year():
 # year = find_json_file_and_extract_year()
 
 
-
-
 from imdb import IMDb
 
 # note: in our use case golden globes of 2013 are for 2012 moves, so in useage, do year of GG -1

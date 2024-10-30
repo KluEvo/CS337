@@ -1,12 +1,8 @@
 import json
 import re
-# import nltk
-# from nltk import word_tokenize, pos_tag
-# from nltk.corpus import stopwords
 import spacy
-from fuzzywuzzy import process
-
-from fuzzywuzzy import fuzz
+from rapidfuzz import fuzz, utils
+import numpy as np
 
 # Load the English language model
 nlp = spacy.load("en_core_web_sm")
@@ -32,11 +28,11 @@ def namesInText(text):
 def findName(name, text):
     # Function to check if an entity matches any name in nameArr
     def matches_name(entity):
-        if (fuzz.ratio(entity, name) > 50):
+        if (fuzz.QRatio(entity, name) > 50):
             return True
         nameParts = name.split()
         for namePart in nameParts:
-            if (fuzz.ratio(entity, namePart) > 50):
+            if (fuzz.QRatio(entity, namePart) > 50):
                 return True    
 
         return False
@@ -66,7 +62,7 @@ def findWinner(award_name, nominees, json_file):
     total = 0
     # Load the tweets from the JSON file
     tweets = loadTweets(json_file)
-
+    ss = 1
     
     areHumans = checkHumans(nominees)
     award_match = "best "
@@ -95,14 +91,16 @@ def findWinner(award_name, nominees, json_file):
         if total % 5000 == 0:
             print(total)
 
-        for pattern in win_patterns:
-            candidate = matchFormat(text, award_match, pattern)
-            if not candidate:    
-                continue
-            for nominee in nominees:
-                # print(text + "\n")
-                if (areHumans and findName(nominee, candidate)) or ((not areHumans) and detectTitle(nominee, candidate)): 
-                    nominee_mentions[nominee] += 1
+        if 'best' in text.lower():
+            # ss = 1
+            for pattern in win_patterns:
+                candidate = matchFormat(text, award_match, pattern)
+                if not candidate:    
+                    continue
+                for nominee in nominees:
+                    # print(text + "\n")
+                    if (areHumans and findName(nominee, candidate)) or ((not areHumans) and detectTitle(nominee, candidate)): 
+                        nominee_mentions[nominee] += 1
         
 
     # Determine the nominee with the highest count
@@ -115,6 +113,31 @@ def findWinner(award_name, nominees, json_file):
 
     return winner
 
+# Additional context check for awards to avoid confusion between similar categories
+def matchesContext(part, known):
+    # part_tokens = nlp(part.lower())
+    # part_tokens_list = [token.text for token in part_tokens]
+    part_tokens_list = part.split()
+
+    if "best" not in part_tokens_list:
+        return False
+            
+    # known_tokens = nlp(known.lower())
+    # known_tokens_list = [token.text for token in known_tokens]
+    known_tokens_list = known.split()
+
+    if "best" not in known:
+        return False
+        
+    known_index = known_tokens_list.index("best") + 1
+    part_index = part_tokens_list.index("best") + 1
+
+
+    if known_index < len(known_tokens_list) and part_index < len(part_tokens_list):
+        if fuzz.QRatio(known_tokens_list[known_index], part_tokens_list[part_index], processor=utils.default_process) > 75:
+            return True
+
+    return False
 
 def matchFormat(text, known_award, pattern):
     # Regular expression to extract parts before and after "wins"
@@ -131,26 +154,6 @@ def matchFormat(text, known_award, pattern):
         person_part = matchRes.group(2)
         award_part = matchRes.group(1)
     else:
-        return False
-
-    # Additional context check for awards to avoid confusion between similar categories
-    def matchesContext(part, known):
-        part_tokens = nlp(part.lower())
-        part_tokens_list = [token.text for token in part_tokens]
-
-        if "best" not in part_tokens_list:
-            return False
-                
-        known_tokens = nlp(known.lower())
-        known_tokens_list = [token.text for token in known_tokens]
-        
-        known_index = known_tokens_list.index("best") + 1
-        part_index = part_tokens_list.index("best") + 1
-
-        if known_index < len(known_tokens_list) and part_index < len(part_tokens_list):
-            if fuzz.ratio(known_tokens_list[known_index], part_tokens_list[part_index]) > 75:
-                return True
-
         return False
 
 
@@ -175,12 +178,12 @@ def matchFormat(text, known_award, pattern):
 
 if __name__ == "__main__":
     json_file = "gg2013.json"
-    award_match = "best original song - motion picture"
-    nominees = [ "act of valor",
-                    "stand up guys",
-                    "the hunger games",
-                    "les miserables",
-                    "skyfall"]
+    award_match = "best performance by an actor in a motion picture - drama"
+    nominees = [ "richard gere",
+                "john hawkes",
+                "joaquin phoenix",
+                "denzel washington",
+                    "daniel day-lewis"]
 
     winner = findWinner(award_match, nominees, json_file)
     print(f"The winner is: {winner}")
