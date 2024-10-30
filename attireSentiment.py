@@ -5,10 +5,10 @@ import spacy
 from textblob import TextBlob
 from collections import defaultdict
 import re
+from collections import Counter
 
 import numpy as np
 # Load spaCy model
-nlp = spacy.load('en_core_web_sm')
 
 def remove_urls(text):
     # Regular expression pattern to match URLs
@@ -41,58 +41,59 @@ def analyze_sentiment(tweet_text):
     analysis = TextBlob(tweet_text)
     return analysis.sentiment.polarity
 
-# Load the JSON file
-with open('gg2013.json', 'r') as file:
-    tweets = json.load(file)
 
-# Define keywords related to dressing and fashion
-keywords = np.array(['dress', 'outfit', 'fashion', 'style', 'clothes', 'wear', 'dressed'])
+def clothesSentiment(year, nlp):
+    # Load the JSON file
+    with open(f'gg{year}.json', 'r') as file:
+        tweets = json.load(file)
 
-# Extract relevant tweets
-relevant_tweets = extract_relevant_tweets(tweets, keywords)
+    # Define keywords related to dressing and fashion
+    keywords = np.array(['dress', 'outfit', 'fashion', 'style', 'clothes', 'wear', 'dressed'])
 
-# Initialize dictionaries to store sentiment scores
-best_dressed = defaultdict(float)
-worst_dressed = defaultdict(float)
-controversial_dressed = defaultdict(lambda: [0, 0, 0])
+    # Extract relevant tweets
+    relevant_tweets = extract_relevant_tweets(tweets, keywords)
 
-total = 0
+    # Initialize dictionaries to store sentiment scores
+    best_dressed = defaultdict(float)
+    worst_dressed = defaultdict(float)
+    controversial_dressed = defaultdict(lambda: [0, 0, 0])
 
-docs = nlp.pipe(relevant_tweets)
+    total = 0
 
-# Analyze sentiment and aggregate scores
-for tweet_text in docs:
-    total += 1
-    if total % 500 == 0:
-        print(total)
-    for ent in tweet_text.ents:
-        if ("goldenglobes" not in ent.text.lower()) and ent.label_ == 'PERSON':
-            
-            sentiment_score = analyze_sentiment(str(tweet_text))
-            person_name = ent.text.title()
-            if "'s" in person_name[-2:].lower():
-                person_name = person_name[:-2]
-            best_dressed[person_name] += (sentiment_score)
-            worst_dressed[person_name] -= (sentiment_score)
-            if sentiment_score > 0:
-                controversial_dressed[person_name][0] += sentiment_score
-            else: 
-                controversial_dressed[person_name][1] -= sentiment_score
-            controversial_dressed[person_name][2] += abs(sentiment_score)
+    docs = nlp.pipe(relevant_tweets)
 
-
-controversy_score = defaultdict(float)
-
-for person in controversial_dressed:
-    score = controversial_dressed[person][1] * controversial_dressed[person][0]
-    if score >  controversial_dressed[person][2]:
-        controversy_score[person] = score / controversial_dressed[person][2]
+    # Analyze sentiment and aggregate scores
+    for tweet_text in docs:
+        total += 1
+        if total % 500 == 0:
+            print(total)
+        for ent in tweet_text.ents:
+            if ("goldenglobes" not in ent.text.lower()) and ent.label_ == 'PERSON':
+                
+                sentiment_score = analyze_sentiment(str(tweet_text))
+                person_name = ent.text.title()
+                if "'s" in person_name[-2:].lower():
+                    person_name = person_name[:-2]
+                best_dressed[person_name] += (sentiment_score)
+                worst_dressed[person_name] -= (sentiment_score)
+                if sentiment_score > 0:
+                    controversial_dressed[person_name][0] += sentiment_score
+                else: 
+                    controversial_dressed[person_name][1] -= sentiment_score
+                controversial_dressed[person_name][2] += abs(sentiment_score)
 
 
-from collections import Counter
-d = Counter(best_dressed)
-print("best dressed", d.most_common(1)[0][0])
-d = Counter(worst_dressed)
-print("worst dressed", d.most_common(1)[0][0])
-d = Counter(controversy_score)
-print("controversially dressed", d.most_common(1)[0][0])
+    controversy_score = defaultdict(float)
+
+    for person in controversial_dressed:
+        score = controversial_dressed[person][1] * controversial_dressed[person][0]
+        if score >  controversial_dressed[person][2]:
+            controversy_score[person] = score / controversial_dressed[person][2]
+
+
+    d = Counter(best_dressed)
+    print("best dressed", d.most_common(1)[0][0])
+    d = Counter(worst_dressed)
+    print("worst dressed", d.most_common(1)[0][0])
+    d = Counter(controversy_score)
+    print("controversially dressed", d.most_common(1)[0][0])
