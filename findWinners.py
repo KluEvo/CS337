@@ -4,9 +4,6 @@ import spacy
 from rapidfuzz import fuzz, utils
 import numpy as np
 
-# Load the English language model
-nlp = spacy.load("en_core_web_sm")
-
 
 def loadTweets(json_file):
     with open(json_file, 'r') as file:
@@ -14,7 +11,7 @@ def loadTweets(json_file):
     return tweets
 
 
-def namesInText(text):
+def namesInText(text, nlp):
     # Process the text with spaCy
     doc = nlp(text)
     # Extract named entities
@@ -25,7 +22,7 @@ def namesInText(text):
 
 
 # Function to detect names
-def findName(name, text):
+def findName(name, text, nlp):
     # Function to check if an entity matches any name in nameArr
     def matches_name(entity):
         if (fuzz.QRatio(entity, name) > 50):
@@ -38,11 +35,11 @@ def findName(name, text):
         return False
 
     # Check each entity against nameArr
-    return any(matches_name(entity) for entity in namesInText(text))
+    return any(matches_name(entity) for entity in namesInText(text, nlp))
 
 
 
-def checkHumans(nominees):
+def checkHumans(nominees, nlp):
     for nom in nominees:
         doc = nlp(nom)
 
@@ -56,15 +53,15 @@ def detectTitle(nominee, candidate):
         return True
     return False
 
-
-def findWinner(award_name, nominees, json_file):
+# requires award_name, nominees, year, and the nlp
+def findWinner(award_name, nominees, json_year, nlp):
     skipper = 0
     total = 0
     # Load the tweets from the JSON file
-    tweets = loadTweets(json_file)
+    tweets = loadTweets(f"gg{json_year}.json")
     ss = 1
     
-    areHumans = checkHumans(nominees)
+    areHumans = checkHumans(nominees, nlp)
     award_match = "best "
     # processing the award name to be more useful
     if "supporting" in award_name:
@@ -73,17 +70,14 @@ def findWinner(award_name, nominees, json_file):
         award_match = award_name.replace("performance by an ", '').strip()
 
     print(award_match)
-    # Define regex pattern for identifying phrases related to winning
     win_patterns = [
         # r"(.+?)\s+won\s+(.+)",
         r"(.+?)\s+goes to\s+(.+)",
         r"(.+?)\s+wins\s+(.+)",
         # r"(.+?)\s+awarded\s+(.+)",
     ]
-    # Initialize a dictionary to keep track of how many times each nominee is mentioned as a winner
     nominee_mentions = {nominee: 0 for nominee in nominees}
 
-    # Iterate through the tweets and search for patterns
     for tweet in tweets:
         # text = clean_text(tweet['text'])
         text = tweet['text']
@@ -99,31 +93,24 @@ def findWinner(award_name, nominees, json_file):
                     continue
                 for nominee in nominees:
                     # print(text + "\n")
-                    if (areHumans and findName(nominee, candidate)) or ((not areHumans) and detectTitle(nominee, candidate)): 
+                    if (areHumans and findName(nominee, candidate, nlp)) or ((not areHumans) and detectTitle(nominee, candidate)): 
                         nominee_mentions[nominee] += 1
         
 
-    # Determine the nominee with the highest count
     winner = max(nominee_mentions, key=nominee_mentions.get)
     print(nominee_mentions)
     print(total - skipper)
-    # If no winner was found, return None
-    if nominee_mentions[winner] == 0:
-        return None
+    # If no winner was found, return 
+    
 
     return winner
 
 # Additional context check for awards to avoid confusion between similar categories
 def matchesContext(part, known):
-    # part_tokens = nlp(part.lower())
-    # part_tokens_list = [token.text for token in part_tokens]
     part_tokens_list = part.split()
 
     if "best" not in part_tokens_list:
         return False
-            
-    # known_tokens = nlp(known.lower())
-    # known_tokens_list = [token.text for token in known_tokens]
     known_tokens_list = known.split()
 
     if "best" not in known:
@@ -177,13 +164,16 @@ def matchFormat(text, known_award, pattern):
 
 
 if __name__ == "__main__":
-    json_file = "gg2013.json"
+    year = "2013"
     award_match = "best performance by an actor in a motion picture - drama"
     nominees = [ "richard gere",
                 "john hawkes",
                 "joaquin phoenix",
                 "denzel washington",
                     "daniel day-lewis"]
+    # Load the English language model
+    nlp = spacy.load("en_core_web_sm")
 
-    winner = findWinner(award_match, nominees, json_file)
+
+    winner = findWinner(award_match, nominees, year, nlp)
     print(f"The winner is: {winner}")
