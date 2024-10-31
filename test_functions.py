@@ -28,8 +28,8 @@ ia = IMDb()
 ### HELPER FUNCTIONS
 
 # loads tweet data
-def load_tweets():
-    with open('gg2013.json') as f:
+def load_tweets(year):
+    with open(f'gg{year}.json') as f:
         tweet_data = json.load(f)
     return tweet_data
 
@@ -135,11 +135,11 @@ def get_other_names(text):
 ### ACTUAL FUNCTIONS
 
 # get starting/ending timestamps  (+/- 3 minutes) of when this award was tweeted about
-def get_award_timestamps(award_name):
+def get_award_timestamps(award_name, year):
     cleaned_award = clean_tweet(award_name)
     award_tokens = award_keywords(cleaned_award)
 
-    tweet_data = load_tweets()
+    tweet_data = load_tweets(year)
     best_pattern = r"(.+) (best) (.+)"
     for tweet in tweet_data:
         timestamp = tweet['timestamp_ms']
@@ -155,7 +155,7 @@ def get_award_timestamps(award_name):
     return [tweet_data[0]['timestamp_ms'], tweet_data[0]['timestamp_ms'] + (20 * 60 * 1000)]
 
 # get nominees, winner, presenter(s) for a human award
-def get_human_info(award_name):
+def get_human_info(award_name, year):
     nominees_dict = {}
     nominee_regex = r"\b(should.*?(?:win|won)|deserved.*?(?:win|won|it)|wanted.*?(?:win)|hope.*?(?:win|won)|didn.*?(?:win)|did not.*?(?:win)|robbed|nominate|nominee|up for best)\w*\b"
 
@@ -165,9 +165,9 @@ def get_human_info(award_name):
     presenters_dict = {}
     presenter_regex = r"\b(presents|present|read|hand|announce|introduce)\w*\b"
 
-    award_timestamps = get_award_timestamps(award_name)
+    award_timestamps = get_award_timestamps(award_name, year)
 
-    tweet_data = load_tweets()
+    tweet_data = load_tweets(year)
     for tweet in tweet_data:
         timestamp = tweet['timestamp_ms']
         message = tweet['text']
@@ -283,9 +283,9 @@ def get_other_info(award_name, year):
     presenters_dict = {}
     presenter_regex = r"\b(presents|present|read|hand|announce|introduce)\w*\b"
 
-    award_timestamps = get_award_timestamps(award_name)
+    award_timestamps = get_award_timestamps(award_name, year)
 
-    tweet_data = load_tweets()
+    tweet_data = load_tweets(year)
     for tweet in tweet_data:
         timestamp = tweet['timestamp_ms']
         message = tweet['text']
@@ -414,7 +414,7 @@ def get_everything(award_name, year):
     list_words = ["performance", "actor", "actress", "director", "producer"]
     if any(word in award_name for word in list_words):
         # human
-        return get_human_info(award_name)
+        return get_human_info(award_name, year)
     else:
         # movie, song, etc.
         return get_other_info(award_name, year)
