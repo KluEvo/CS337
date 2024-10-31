@@ -6,14 +6,8 @@ from unidecode import unidecode
 from fuzzywuzzy import fuzz
 from fuzzywuzzy import process
 from nltk.stem import PorterStemmer
-from nltk.tokenize import word_tokenize
 from nltk.corpus import names
-from nltk.corpus import wordnet as wn
-from nltk import pos_tag
-import nltk
-from nltk.chunk import RegexpParser
 from rapidfuzz import process, fuzz
-from langdetect import detect, LangDetectException
 from imdb import IMDb
 import helperFuncs as hf
 
@@ -412,7 +406,8 @@ def get_other_info(award_name, year):
 
 def get_everything(award_name, year):
     list_words = ["performance", "actor", "actress", "director", "producer"]
-    if any(word in award_name for word in list_words):
+    # if any(word in award_name for word in list_words):
+    if hf.checkHumanAward(award_name):
         # human
         return get_human_info(award_name, year)
     else:
