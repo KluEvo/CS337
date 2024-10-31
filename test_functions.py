@@ -11,13 +11,15 @@ from nltk.corpus import names
 from nltk.corpus import wordnet as wn
 from nltk import pos_tag
 import nltk
-
+from nltk.chunk import RegexpParser
 from rapidfuzz import process, fuzz
 from langdetect import detect, LangDetectException
 from imdb import IMDb
+import helperFuncs as hf
 
 ### SOME LOADING
 spacy_model = spacy.load("en_core_web_sm")
+spacy_model2 = spacy.load("en_core_web_trf")
 stemmer = PorterStemmer()
 female_names = [name.lower() for name in names.words('female.txt')]
 male_names = [name.lower() for name in names.words('male.txt')]
@@ -67,34 +69,6 @@ def award_keywords(award_name):
             keywords.append(token.text)
     return [keyword for keyword in keywords]
 
-# gets names mentioned in a tweet
-def get_other(text):
-    # names = []
-    # valid_chunks = ['NN', 'NNP', 'NNPS', 'NNS']
-    # tokens = nltk.tokenize.word_tokenize(text)
-    # pos = nltk.pos_tag(tokens)
-    # sent = nltk.ne_chunk(pos, binary = False)
-    # for i in range(len(sent)):
-    #     chunk = sent[i]
-    #     word = chunk[0]
-    #     # chunk_type = chunk[1]
-    #     if word in female_names or word in male_names:
-    #         if i + 1 < len(sent) and sent[i+1][1] in valid_chunks:
-    #             full_name = sent[i][0] + " " + sent[i+1][0]
-    #             names.append(full_name)
-    # return names
-    names = []
-    valid_chunks = ['NN', 'NNP', 'NNPS', 'NNS']
-    tokens = nltk.tokenize.word_tokenize(text)
-    for i in range(len(tokens)):
-        word = tokens[i]
-        if word in valid_chunks:
-            if i + 1 < len(tokens):
-                full_name = tokens[i] + " " + tokens[i+1]
-                names.append(full_name)
-    return names
-
-
 # check if the award is in tweet
 def award_in_tweet(award_name, cleaned_tweet):
     cleaned_award = clean_tweet(award_name)
@@ -108,12 +82,6 @@ def award_in_tweet(award_name, cleaned_tweet):
             return award_in_tweet
     else:
         return False
-    
-def is_english(text):
-    try:
-        return detect(text) == 'en'
-    except LangDetectException:
-        return False
 
 # check if this is a valid name
 def valid_name(name_lowered):
@@ -126,6 +94,14 @@ def valid_name(name_lowered):
         return False
     for invalid in invalid_characters:
         if invalid in name_lowered:
+            return False
+    return True
+
+# check if this is a valid song or movie name
+def valid_song_movie(name):
+    invalid_characters = ['rt', '@', 'golden', 'globe', '#']
+    for invalid in invalid_characters:
+        if invalid in name.lower():
             return False
     return True
 
@@ -172,7 +148,6 @@ def get_award_timestamps(award_name):
     cleaned_award = clean_tweet(award_name)
     award_tokens = award_keywords(cleaned_award)
 
-    all_award_timestamps = []
     tweet_data = load_tweets()
     best_pattern = r"(.+) (best) (.+)"
     for tweet in tweet_data:
@@ -181,17 +156,13 @@ def get_award_timestamps(award_name):
         cleaned_tweet = clean_tweet(message)
         match = re.search(best_pattern, cleaned_tweet)
         if match:
-            best_prev = re.match(best_pattern, cleaned_tweet).group(1)
             best_onwards = re.match(best_pattern, cleaned_tweet).group(2) + " " + re.match(best_pattern, cleaned_tweet).group(3)
             award_in_tweet = all(word in best_onwards for word in award_tokens)
             if award_in_tweet:
-                all_award_timestamps.append(timestamp)
 
-            # print(f"best prev: {best_prev}")
-            # print(f"best onwards: {best_onwards}")
-            # print(f"actual tweet {cleaned_tweet}")
-    # return [all_award_timestamps[0] - (10 * 60 * 1000), all_award_timestamps[-1] + (10 * 60 * 1000)]
-    return [all_award_timestamps[0] -  (5 * 60 * 1000), all_award_timestamps[0] + (15 * 60 * 1000)]
+                return [timestamp -  (5 * 60 * 1000), timestamp + (20 * 60 * 1000)]
+    
+    return [tweet_data[0]['timestamp_ms'], tweet_data[0]['timestamp_ms'] + (20 * 60 * 1000)]
 
 # get nominees, winner, presenter(s) for a human award
 def get_human_info(award_name):
@@ -313,7 +284,7 @@ def get_human_info(award_name):
     return entire_dict 
 
 # get nominees, winner, presenter(s) for a non-human award
-def get_other_info(award_name):
+def get_other_info(award_name, year):
     nominees_dict = {}
     nominee_regex = r"\b(should.*?(?:win|won)|deserved.*?(?:win|won|it)|wanted.*?(?:win)|hope.*?(?:win|won)|didn.*?(?:win)|did not.*?(?:win)|robbed|nominate|nominee|up for best)\w*\b"
 
@@ -333,7 +304,8 @@ def get_other_info(award_name):
         cleaned_tweet = clean_tweet(message)
         if "rt" in cleaned_tweet:
             cleaned_tweet = cleaned_tweet[3:]
-        if timestamp >= award_timestamps[0] and timestamp <= award_timestamps[1]:
+        ats2 = award_timestamps[1] - (10 * 60 * 1000)
+        if timestamp >= award_timestamps[0] and timestamp <= ats2:
             nominee_match = re.search(nominee_regex, cleaned_tweet)
             winner_match = re.search(winner_regex, cleaned_tweet)
             presenter_match = re.search(presenter_regex, cleaned_tweet)
@@ -343,112 +315,120 @@ def get_other_info(award_name):
                 spacy_output = spacy_model(name_structure_tweet)
 
             if nominee_match:
+                spacy_output2 = spacy_model2(name_structure_tweet)
+                for entity in spacy_output2.ents:
+                    if entity.label_ in ["WORK_OF_ART", "ORG", "GPE", "NAME"]:
+                        name = entity.text
+                        add_name = valid_song_movie(name)
+                        if add_name:
+                            if name in nominees_dict:
+                                nominees_dict[name.lower()] += 1
+                            else:
+                                nominees_dict[name.lower()] = 1
+            
+            if winner_match and award_in_tweet(award_name, cleaned_tweet):
+                spacy_output2 = spacy_model2(name_structure_tweet)
+                for entity in spacy_output2.ents:
+                    if entity.label_ in ["WORK_OF_ART", "ORG", "GPE", "NAME"]:
+                        name = entity.text
+                        add_name = valid_song_movie(name)
+                        if add_name:
+                            if name in winner_dict:
+                                winner_dict[name.lower()] += 1
+                            else:
+                                winner_dict[name.lower()] = 1
+            
+            if presenter_match:
                 for entity in spacy_output.ents:
-                    if entity.label_ in {"WORK_OF_ART", "PERSON", "ORG"}:
+                    if entity.label_ == 'PERSON':
                         name = entity.text.lower()
-                        if name in nominees_dict:
-                            nominees_dict[name] += 1
-                        else:
-                            nominees_dict[name] = 1
-            
-            # if winner_match and award_in_tweet(award_name, cleaned_tweet):
-            #     for entity in spacy_output.ents:
-            #         if entity.label_ == 'WORK OF ART':
-            #             name = entity.text.lower()
-            #             if name in winner_dict:
-            #                 winner_dict[name] += 1
-            #             else:
-            #                 winner_dict[name] = 1
-            
-            # if presenter_match:
-            #     for entity in spacy_output.ents:
-            #         if entity.label_ == 'PERSON':
-            #             name = entity.text.lower()
-            #             if valid_name(name):
-            #                 if name in presenters_dict:
-            #                     presenters_dict[name] += 1
-            #                 else:
-            #                     presenters_dict[name] = 1
+                        if valid_name(name):
+                            if name in presenters_dict:
+                                presenters_dict[name] += 1
+                            else:
+                                presenters_dict[name] = 1
     
     nominees_sorted = dict(sorted(nominees_dict.items(), key=lambda item: item[1], reverse=True))
     winner_sorted = dict(sorted(winner_dict.items(), key=lambda item: item[1], reverse=True))
     presenters_sorted = dict(sorted(presenters_dict.items(), key=lambda item: item[1], reverse=True))
-    nominees_combined = combine_dict(nominees_sorted)
-    presenters_combined = combine_dict(presenters_sorted)
+    nominees_combined = dict(sorted(combine_dict(nominees_sorted).items(), key=lambda item: item[1], reverse=True))
+    presenters_combined = dict(sorted(combine_dict(presenters_sorted).items(), key=lambda item: item[1], reverse=True))
     # NOMINEES: max person of winner dict, plus top 4 of nominees dict???
     # PRESENTERS: max one or two
     print(f"nominees dictionary: {nominees_combined}")
     print(f"winner dictionary: {winner_sorted}")
     print(f"presenters dictionary: {presenters_combined}")
-    # nominees = []
-    # potential_nominees = []
-    # presenters = []
-    # potential_presenters = []
+    nominees = []
+    potential_nominees = []
+    presenters = []
+    potential_presenters = []
 
-    # if winner_sorted:
-    #     winner = list(winner_sorted.keys())[0]
-    #     nominees.append(winner)
+    if winner_sorted:
+        winner = list(winner_sorted.keys())[0]
+        nominees.append(winner)
     
-    # top_nominees_list = list(nominees_combined.keys())
-    # i = 0
-    # while i < len(top_nominees_list):
-    #     if len(nominees) >= 5:
-    #         break
-    #     nominee = top_nominees_list[i]
-    #     if nominee not in nominees:
-    #         nominees.append(nominee)
-    #     i += 1
-    # while i < len(top_nominees_list):       
-    #     if len(potential_nominees) >= 5:
-    #         break
-    #     nominee = nominee = top_nominees_list[i]
-    #     potential_nominees.append(nominee)
-    #     i += 1
+    top_nominees_list = list(nominees_combined.keys())
+    i = 0
+    while i < len(top_nominees_list):
+        if len(nominees) >= 5:
+            break
+        nominee = top_nominees_list[i]
+        if nominee not in nominees:
+            nominees.append(nominee)
+        i += 1
+    while i < len(top_nominees_list):       
+        if len(potential_nominees) >= 5:
+            break
+        nominee = nominee = top_nominees_list[i]
+        potential_nominees.append(nominee)
+        i += 1
     
-    # top_presenters_list = list(presenters_combined.keys())
-    # i = 0
-    # while i < len(top_presenters_list):
-    #     if len(presenters) >= 2:
-    #         break
-    #     presenter = top_presenters_list[i]
-    #     if presenter not in presenters:
-    #         presenters.append(presenter)
-    #     i += 1
-    # while i < len(top_presenters_list):
-    #     if len(potential_presenters) > 10:
-    #         break
-    #     presenter = top_presenters_list[i]
-    #     potential_presenters.append(presenter)
-    #     i += 1
+    top_presenters_list = list(presenters_combined.keys())
+    i = 0
+    while i < len(top_presenters_list):
+        if len(presenters) >= 2:
+            break
+        presenter = top_presenters_list[i]
+        if presenter not in presenters:
+            presenters.append(presenter)
+        i += 1
+    while i < len(top_presenters_list):
+        if len(potential_presenters) > 10:
+            break
+        presenter = top_presenters_list[i]
+        potential_presenters.append(presenter)
+        i += 1
 
-    # print(f"nominees: {nominees}")
-    # print(f"potential nominees: {potential_nominees}")
-    # print(f"presenters: {presenters}")
-    # print(f"potential presenters: {potential_presenters}")
+    print(f"nominees: {nominees}")
+    print(f"potential nominees: {potential_nominees}")
+
+    print(f"presenters: {presenters}")
+    print(f"potential presenters: {potential_presenters}")
+
+    comb = nominees + potential_nominees
+    return_movies = []
+    print(f"combined: {comb}")
+    for movie in comb:
+        proper = hf.getMoviesAndShowsByYear(movie, year - 1)
+        if len(proper) > 0:
+            return_movies.append(proper[0])
+    print(return_movies)
 
     # entire_dict = {"nominees": nominees, "potential nominees": potential_nominees, "presenters": presenters, "potential presenters": potential_presenters}
     # return entire_dict
 
 
-def get_everything(award_name):
+def get_everything(award_name, year):
     list_words = ["performance", "actor", "actress", "director", "producer"]
     if any(word in award_name for word in list_words):
         # human
         return get_human_info(award_name)
     else:
         # movie, song, etc.
-        return get_other_info(award_name)
-    
-dict_returned = get_human_info("best performance by an actress in a motion picture - drama")
-print(dict_returned)
+        return get_other_info(award_name, year)
 
-# get_everything("cecil b. demille award")
+# get_everything("best motion picture - drama", 2013)
 
-# sentence = "RT @goldenglobes: Best Original Score - Mychael Danna - Life of Pi - #GoldenGlobes"
-# spacy_output = spacy_model(clean_name_tweet(sentence))
+# sentence = "RT @goldenglobes: Beauty and the Beast Best Original Score - Mychael Danna - Life of Pi - #GoldenGlobes - The Hunger Games - The Dark Knight - Les Miserables - Zero Dark Thirty"
 
-# for entity in spacy_output.ents:
-#     print("hello")
-#     print(entity.text)
-# #     if entity.label_ in {"WORK_OF_ART", "PERSON", "ORG"}:
-# #         print(entity.text)
+# print(get_movie_song_names(sentence))
