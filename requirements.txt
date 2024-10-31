@@ -1,0 +1,7 @@
+spacy
+fuzzywuzzy
+rapidfuzz
+numpy
+textblob
+nltk
+imdbpy

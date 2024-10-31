@@ -23,8 +23,6 @@ def find_json_file_and_extract_year():
 # year = find_json_file_and_extract_year()
 
 
-
-
 from imdb import IMDb
 
 # note: in our use case golden globes of 2013 are for 2012 moves, so in useage, do year of GG -1
@@ -110,6 +108,7 @@ def remove_symbols(a_tweet):
 def find_special_awards(tweets):
     regexp = "(?<=the)(.*)(?=award)"
     specials = []
+
     for i in tweets:
         tweet = remove_symbols(i['text'])
         result = re.search(regexp, tweet)
@@ -119,16 +118,16 @@ def find_special_awards(tweets):
                 continue
             specials.append(tweet[start:end])
     specials = list(Counter(specials).most_common(100))
-    special_awards =  specials[0:5]
+    special_awards = specials[0:5]
 
+    
     awards = []
-    special_awards = find_special_awards(tweets)
     for i in special_awards:
         cont = True
-        if fuzz.ratio(i.lower(), "golden globes") > 75:
+        if fuzz.ratio(i[0].lower(), "golden globes") > 70 or "golden globe" in i[0].lower():
             cont = False
         if cont:
             itxt = i[0].title()
-            awards.append(itxt)
+            awards.append(itxt.strip())
 
     return list(set(awards))

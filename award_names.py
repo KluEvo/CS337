@@ -1,17 +1,7 @@
-import json
 import re
-import spacy
 import string
 from rapidfuzz import fuzz
-import numpy as np
-from nltk import word_tokenize, pos_tag
-
-nlp = spacy.load("en_core_web_sm")
-
-def load_tweets(json_file):
-    with open(json_file, 'r') as file:
-        tweets = json.load(file)
-    return tweets
+from findSpecialAwards import find_special_awards
 
 def find_name(text):
     url_pattern = r'http?:\/\/\S+'
@@ -100,13 +90,10 @@ def find_awards_from_tweets(tweets):
         for pattern in award_patterns:
             matches = re.findall(pattern, text, re.IGNORECASE)
             for match in matches:
-                doc = nlp(match)
                 best_pattern = r"(best\s+.+)"
-                best_matches = re.findall(best_pattern, doc.text, re.IGNORECASE)
+                best_matches = re.findall(best_pattern, match, re.IGNORECASE)
                 for best in best_matches:
-                    best_doc = nlp(best)
-                    text = best_doc.text
-                    name = find_name(text).strip()
+                    name = find_name(best).strip()
                     translation_table = str.maketrans("/" , " ", string.punctuation.replace("/", ""))
                     name = name.translate(translation_table)
 
@@ -129,13 +116,10 @@ def find_awards_from_tweets(tweets):
             if len(split) == 2:
                 final_names.add('best' + split[1])
 
-    return final_names
-    
+    for name in find_special_awards(tweets):
+        final_names.add(name.lower())
 
-json_file_path = 'gg2013.json'
-awards = find_awards_from_tweets(load_tweets(json_file_path))
-for award in awards:
-    print(award)
+    return list(final_names)
 
 # best television series
 # best actor in a miniseries tv movie
