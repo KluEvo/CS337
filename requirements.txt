@@ -4,3 +4,4 @@ rapidfuzz
 numpy
 textblob
 nltk
+imdbpy
