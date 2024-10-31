@@ -3,3 +3,4 @@ fuzzywuzzy
 rapidfuzz
 numpy
 textblob
+nltk

@@ -60,7 +60,7 @@ def get_nominees(year):
     '''Nominees is a dictionary with the hard coded award
     names as keys, and each entry a list of strings. Do NOT change
     the name of this function or what it returns.'''
-    # Your code here
+    global nominees = 
     return nominees
 
 def get_winner(year):
@@ -94,7 +94,11 @@ def main():
     and then run gg_api.main(). This is the second thing the TA will
     run when grading. Do NOT change the name of this function or
     what it returns.'''
+    ##################################
+    ######### CHANGE YEAR HERE #######
     year = '2013'
+    ##################################
+
     hosts = get_hosts(year)
     awards = get_awards(year)
 
