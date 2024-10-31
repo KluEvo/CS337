@@ -49,17 +49,14 @@ def checkHumans(nominees, nlp):
             return False
 
 def detectTitle(nominee, candidate):
-    if nominee.lower() in candidate.lower():
+    if fuzz.token_set_ratio(nominee, candidate, processor=utils.default_process) > 80 or (fuzz.QRatio(nominee, candidate, processor=utils.default_process) > 75):
         return True
     return False
 
 # requires award_name, nominees, year, and the nlp
 def findWinner(award_name, nominees, json_year, nlp):
-    skipper = 0
-    total = 0
     # Load the tweets from the JSON file
     tweets = loadTweets(f"gg{json_year}.json")
-    ss = 1
     
     areHumans = checkHumans(nominees, nlp)
     award_match = "best "
@@ -69,7 +66,6 @@ def findWinner(award_name, nominees, json_year, nlp):
     else:
         award_match = award_name.replace("performance by an ", '').strip()
 
-    print(award_match)
     win_patterns = [
         # r"(.+?)\s+won\s+(.+)",
         r"(.+?)\s+goes to\s+(.+)",
@@ -81,9 +77,6 @@ def findWinner(award_name, nominees, json_year, nlp):
     for tweet in tweets:
         # text = clean_text(tweet['text'])
         text = tweet['text']
-        total += 1
-        if total % 5000 == 0:
-            print(total)
 
         if 'best' in text.lower():
             # ss = 1
@@ -92,17 +85,12 @@ def findWinner(award_name, nominees, json_year, nlp):
                 if not candidate:    
                     continue
                 for nominee in nominees:
-                    # print(text + "\n")
-                    if (areHumans and findName(nominee, candidate, nlp)) or ((not areHumans) and detectTitle(nominee, candidate)): 
+                    if (areHumans and findName(nominee, candidate, nlp)) or ((not areHumans) and detectTitle(nominee.lower(), candidate.lower())): 
                         nominee_mentions[nominee] += 1
         
 
     winner = max(nominee_mentions, key=nominee_mentions.get)
-    print(nominee_mentions)
-    print(total - skipper)
     # If no winner was found, return 
-    
-
     return winner
 
 # Additional context check for awards to avoid confusion between similar categories
@@ -150,17 +138,6 @@ def matchFormat(text, known_award, pattern):
 
     return False
 
-# def find_json_files():
-#     json_files = []
-#     for file_name in os.listdir(os.getcwd()):
-#         if fnmatch.fnmatch(file_name, '*.json'):
-#             json_files.append(file_name)
-#     return json_files
-
-# # Example usage
-# directory_path = '/path/to/your/directory'
-# json_files_array = find_json_files(directory_path)
-# print(json_files_array)
 
 
 if __name__ == "__main__":
