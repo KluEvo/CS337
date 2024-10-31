@@ -132,15 +132,6 @@ def combine_dict(dictionary):
 def get_other_names(text):
     return 1
 
-def present_keyword():
-    ["present", "read", ]
-
-def nominee_keyword():
-    "should have won"
-    "deserve win"
-    "hope win / hope won "
-    "robbed"
-
 ### ACTUAL FUNCTIONS
 
 # get starting/ending timestamps  (+/- 3 minutes) of when this award was tweeted about
@@ -159,7 +150,6 @@ def get_award_timestamps(award_name):
             best_onwards = re.match(best_pattern, cleaned_tweet).group(2) + " " + re.match(best_pattern, cleaned_tweet).group(3)
             award_in_tweet = all(word in best_onwards for word in award_tokens)
             if award_in_tweet:
-
                 return [timestamp -  (5 * 60 * 1000), timestamp + (20 * 60 * 1000)]
     
     return [tweet_data[0]['timestamp_ms'], tweet_data[0]['timestamp_ms'] + (20 * 60 * 1000)]
@@ -176,7 +166,6 @@ def get_human_info(award_name):
     presenter_regex = r"\b(presents|present|read|hand|announce|introduce)\w*\b"
 
     award_timestamps = get_award_timestamps(award_name)
-    print(award_timestamps)
 
     tweet_data = load_tweets()
     for tweet in tweet_data:
@@ -295,7 +284,6 @@ def get_other_info(award_name, year):
     presenter_regex = r"\b(presents|present|read|hand|announce|introduce)\w*\b"
 
     award_timestamps = get_award_timestamps(award_name)
-    print(award_timestamps)
 
     tweet_data = load_tweets()
     for tweet in tweet_data:
@@ -355,9 +343,9 @@ def get_other_info(award_name, year):
     presenters_combined = dict(sorted(combine_dict(presenters_sorted).items(), key=lambda item: item[1], reverse=True))
     # NOMINEES: max person of winner dict, plus top 4 of nominees dict???
     # PRESENTERS: max one or two
-    print(f"nominees dictionary: {nominees_combined}")
-    print(f"winner dictionary: {winner_sorted}")
-    print(f"presenters dictionary: {presenters_combined}")
+    # print(f"nominees dictionary: {nominees_combined}")
+    # print(f"winner dictionary: {winner_sorted}")
+    # print(f"presenters dictionary: {presenters_combined}")
     nominees = []
     potential_nominees = []
     presenters = []
@@ -393,29 +381,33 @@ def get_other_info(award_name, year):
             presenters.append(presenter)
         i += 1
     while i < len(top_presenters_list):
-        if len(potential_presenters) > 10:
+        if len(potential_presenters) > 15:
             break
         presenter = top_presenters_list[i]
         potential_presenters.append(presenter)
         i += 1
 
-    print(f"nominees: {nominees}")
-    print(f"potential nominees: {potential_nominees}")
+    # print(f"nominees: {nominees}")
+    # print(f"potential nominees: {potential_nominees}")
 
-    print(f"presenters: {presenters}")
-    print(f"potential presenters: {potential_presenters}")
+    # print(f"presenters: {presenters}")
+    # print(f"potential presenters: {potential_presenters}")
 
-    comb = nominees + potential_nominees
+    combined = nominees + potential_nominees
     return_movies = []
-    print(f"combined: {comb}")
-    for movie in comb:
+    for movie in combined:
         proper = hf.getMoviesAndShowsByYear(movie, year - 1)
         if len(proper) > 0:
             return_movies.append(proper[0])
-    print(return_movies)
 
-    # entire_dict = {"nominees": nominees, "potential nominees": potential_nominees, "presenters": presenters, "potential presenters": potential_presenters}
-    # return entire_dict
+    all_movies = [mov['title'] for mov in return_movies]
+    # print(f"all movies: {all_movies}")
+
+    top_movs = all_movies[:5]
+    remaining_movs = all_movies[5:]
+
+    entire_dict = {"nominees": top_movs, "potential nominees": remaining_movs, "presenters": presenters, "potential presenters": potential_presenters}
+    return entire_dict
 
 
 def get_everything(award_name, year):
@@ -426,9 +418,3 @@ def get_everything(award_name, year):
     else:
         # movie, song, etc.
         return get_other_info(award_name, year)
-
-# get_everything("best motion picture - drama", 2013)
-
-# sentence = "RT @goldenglobes: Beauty and the Beast Best Original Score - Mychael Danna - Life of Pi - #GoldenGlobes - The Hunger Games - The Dark Knight - Les Miserables - Zero Dark Thirty"
-
-# print(get_movie_song_names(sentence))

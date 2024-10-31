@@ -43,7 +43,7 @@ def getMoviesAndShowsByYear(name, year):
     for item in items:
         item_info = {
             'title': item.get('title', 'N/A'),
-            'year': item.get('year', 'N/A')
+            # 'year': item.get('year', 'N/A')
             # 'kind': item.get('kind', 'N/A')
         }
         items_list.append(item_info)
