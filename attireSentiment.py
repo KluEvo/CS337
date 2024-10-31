@@ -1,14 +1,11 @@
 import json
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
-import spacy
 from textblob import TextBlob
 from collections import defaultdict
 import re
 from collections import Counter
-
 import numpy as np
-# Load spaCy model
 
 def remove_urls(text):
     # Regular expression pattern to match URLs
@@ -58,15 +55,15 @@ def clothesSentiment(year, nlp):
     worst_dressed = defaultdict(float)
     controversial_dressed = defaultdict(lambda: [0, 0, 0])
 
-    total = 0
+    # total = 0
 
     docs = nlp.pipe(relevant_tweets)
 
     # Analyze sentiment and aggregate scores
     for tweet_text in docs:
-        total += 1
-        if total % 500 == 0:
-            print(total)
+        # total += 1
+        # if total % 500 == 0:
+        #     print(total)
         for ent in tweet_text.ents:
             if ("goldenglobes" not in ent.text.lower()) and ent.label_ == 'PERSON':
                 
@@ -90,10 +87,13 @@ def clothesSentiment(year, nlp):
         if score >  controversial_dressed[person][2]:
             controversy_score[person] = score / controversial_dressed[person][2]
 
+    dressed_awards = {}
 
     d = Counter(best_dressed)
-    print("best dressed", d.most_common(1)[0][0])
+    dressed_awards["Best Dressed"] = d.most_common(1)[0][0]
     d = Counter(worst_dressed)
-    print("worst dressed", d.most_common(1)[0][0])
+    dressed_awards["Worst Dressed"] = d.most_common(1)[0][0]
     d = Counter(controversy_score)
-    print("controversially dressed", d.most_common(1)[0][0])
+    dressed_awards["Controversially Dressed"] = d.most_common(1)[0][0]
+
+    return dressed_awards

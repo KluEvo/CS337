@@ -4,6 +4,7 @@ import spacy
 from host import find_hosts_from_tweets_nltk
 from award_names import find_awards_from_tweets
 from findWinners import findWinner
+from attireSentiment import clothesSentiment
 
 nlp = spacy.load("en_core_web_sm")
 
@@ -97,6 +98,9 @@ def main():
     hosts = get_hosts(year)
     awards = get_awards(year)
 
+    # additional goals: red carpet
+    dressed_awards = clothesSentiment(year, nlp)
+
     data_json = {
         "hosts": hosts,
         "mined_awards": [award for award in awards]
@@ -109,7 +113,11 @@ def main():
         txt_file.write(f"Host(s): {', '.join(hosts)}\n\n")
         txt_file.write(f"Mined Awards: \n")
         for award in awards:
-            txt_file.write(f"{award}\n")
+            txt_file.write(f"\t{award}\n")
+
+        txt_file.write("\n")
+        for key, value in dressed_awards.items():
+            txt_file.write(f"{key}: {value}\n")
 
     return
 
