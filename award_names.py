@@ -1,12 +1,7 @@
-import json
 import re
 import string
 from rapidfuzz import fuzz
-
-def load_tweets(json_file):
-    with open(json_file, 'r') as file:
-        tweets = json.load(file)
-    return tweets
+from findSpecialAwards import find_special_awards
 
 def find_name(text):
     url_pattern = r'http?:\/\/\S+'
@@ -121,13 +116,10 @@ def find_awards_from_tweets(tweets):
             if len(split) == 2:
                 final_names.add('best' + split[1])
 
-    return final_names
-    
+    for name in find_special_awards(tweets):
+        final_names.add(name.lower())
 
-json_file_path = 'gg2013.json'
-awards = find_awards_from_tweets(load_tweets(json_file_path))
-for award in awards:
-    print(award)
+    return list(final_names)
 
 # best television series
 # best actor in a miniseries tv movie

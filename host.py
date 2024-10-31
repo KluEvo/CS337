@@ -1,15 +1,6 @@
-import json
 import re
-import spacy
 from fuzzywuzzy import fuzz
 import numpy as np
-
-nlp = spacy.load("en_core_web_sm")
-
-def load_tweets(json_file):
-    with open(json_file, 'r') as file:
-        tweets = json.load(file)
-    return tweets
 
 # combine similar keys
 # combine keys of full name and just first name
@@ -37,7 +28,8 @@ def high_outliers(dictionary):
     outliers = [key for key, count in dictionary.items() if count > threshold]
     return outliers
 
-def find_hosts_from_tweets_nltk(tweets):
+def find_hosts_from_tweets_nltk(tweets, nlp):
+
     host_patterns = [
         r"(.+?)\s+hosts\s+(.+)", 
         r"hosted\s+by\s+(.+)"
@@ -63,8 +55,3 @@ def find_hosts_from_tweets_nltk(tweets):
 
     cleaned_dict = clean_dictionary(host_mentions)
     return high_outliers(cleaned_dict)
-
-json_file_path = 'gg2013.json'
-
-hosts = find_hosts_from_tweets_nltk(load_tweets(json_file_path))
-print(hosts)
