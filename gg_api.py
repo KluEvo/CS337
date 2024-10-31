@@ -5,6 +5,7 @@ from host import find_hosts_from_tweets_nltk
 from award_names import find_awards_from_tweets
 from findWinners import findWinner
 from attireSentiment import clothesSentiment
+from test_functions import get_everything
 
 nlp = spacy.load("en_core_web_sm")
 
@@ -37,6 +38,9 @@ AWARD_NAMES = ["best screenplay - motion picture",
                "best performance by an actor in a television series - comedy or musical"]
 
 nominees = {}
+potential_nominees = {}
+presenters = {}
+potential_presenters = {}
 
 def load_tweets(year):
     json_file = 'gg' + year + '.json'
@@ -60,7 +64,16 @@ def get_nominees(year):
     '''Nominees is a dictionary with the hard coded award
     names as keys, and each entry a list of strings. Do NOT change
     the name of this function or what it returns.'''
-    # global nominees = 
+    global nominees
+    global potential_nominees
+    global presenters
+    global potential_presenters
+    for award in AWARD_NAMES:
+        result = get_everything(award, int(year))
+        nominees[award] = result['nominees']
+        potential_nominees[award] = result['potential nominees']
+        presenters[award] = result['presenters']
+        potential_presenters[award] = result['potential presenters']
     return nominees
 
 def get_winner(year):
@@ -69,14 +82,13 @@ def get_winner(year):
     Do NOT change the name of this function or what it returns.'''
     winners = {}
     for award in AWARD_NAMES:
-        winners[award] = findWinner(award, nominees[award], year, nlp)
+        winners[award] = findWinner(award, nominees[award], int(year), nlp)
     return winners
 
 def get_presenters(year):
     '''Presenters is a dictionary with the hard coded award
     names as keys, and each entry a list of strings. Do NOT change the
     name of this function or what it returns.'''
-    # Your code here
     return presenters
 
 def pre_ceremony():
@@ -101,13 +113,27 @@ def main():
 
     hosts = get_hosts(year)
     awards = get_awards(year)
+    nominees = get_nominees(year)
+    presenters = get_presenters(year)
+    winners = get_winner(year)
 
     # additional goals: red carpet
     dressed_awards = clothesSentiment(year, nlp)
 
+    award_data = {}
+    for award in AWARD_NAMES:
+        award_data[award] = {
+            "nominees": nominees[award],
+            "potential_nominees": potential_nominees[award],
+            "presenters": presenters[award],
+            "potential_presenters": potential_presenters[award],
+            "winner": winners[award]
+        }
+        
     data_json = {
         "hosts": hosts,
-        "mined_awards": [award for award in awards]
+        "mined_awards": [award for award in awards],
+        "award_data": award_data
     }
 
     with open("gg" + year + "results.json", "w") as json_file:
@@ -118,6 +144,15 @@ def main():
         txt_file.write(f"Mined Awards: \n")
         for award in awards:
             txt_file.write(f"\t{award}\n")
+
+        for award in AWARD_NAMES:
+            txt_file.write("\n")
+            txt_file.write(f"Award: {award}\n")
+            txt_file.write(f"Presenters: {', '.join(presenters[award])}\n")
+            txt_file.write(f"All Potential Mined Presenters: {', '.join(potential_presenters[award])}\n")
+            txt_file.write(f"Nominees: {', '.join(nominees[award])}\n")
+            txt_file.write(f"All Potential Mined Nominees: {', '.join(potential_nominees[award])}\n")
+            txt_file.write(f"Winner: {winners[award]}\n")
 
         txt_file.write("\n")
         for key, value in dressed_awards.items():

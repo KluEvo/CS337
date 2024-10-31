@@ -1,5 +1,6 @@
 /.venv
 /venv
+/my_env
 /gg2013.json
 *.pyc
 awardSearchV2.py

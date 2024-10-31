@@ -1,42 +1,941 @@
 {
     "hosts": [
-        "Tina Fey",
-        "Amy Poehler"
+        "Tina",
+        "Amy",
+        "Amy Poehler",
+        "Tina Fey"
     ],
     "mined_awards": [
-        "best actor in a miniseries tv movie",
-        "best supporting actress",
-        "best comedy actress in a television series",
-        "best motion picture comedy or musical",
-        "best tv series drama",
-        "best screenplay",
-        "best actor in a motion picture drama",
-        "best supporting actor motion picture",
-        "best actress in a miniseries tv movie",
-        "best television series",
-        "best original song motion picture award",
-        "best actress in a tv comedy or musical",
-        "best director",
-        "best actress in a motion picture comedy or musical",
         "best supporting actor",
-        "best actress in a tv series drama",
+        "best motion picture comedy or musical",
+        "best comedy actress in a television series",
         "best miniseries tv movie",
-        "best original song",
-        "best supporting actress tv series miniseries or tv movie",
-        "best foreign language film",
-        "best actor in a tv comedy or musical",
-        "best actor in a tv series drama",
-        "best comedy actor in a television series",
+        "best actress in a tv series drama",
         "best tv comedy or musical",
-        "cecil b. demille",
-        "best actor in a motion picture comedy or musical",
-        "best actress in a motion picture drama",
-        "best supporting actress motion picture",
-        "best actress tv series  comedy or musical",
+        "best actress in a motion picture comedy or musical",
         "best motion picture screenplay",
-        "best motion picture drama",
-        "best actor tv series  comedy or musical",
+        "best comedy actor in a television series",
+        "best supporting actor motion picture",
+        "best animated feature film",
+        "best supporting actress",
         "best supporting actor tv series miniseries or tv movie",
-        "best animated feature film"
-    ]
+        "cecil b. demille",
+        "best actor in a miniseries tv movie",
+        "best supporting actress tv series miniseries or tv movie",
+        "best motion picture drama",
+        "best original song",
+        "best actor in a motion picture drama",
+        "best screenplay",
+        "best supporting actress motion picture",
+        "best foreign language film",
+        "best actress in a miniseries tv movie",
+        "best actress tv series  comedy or musical",
+        "best actor in a tv comedy or musical",
+        "best actor tv series  comedy or musical",
+        "best actress in a tv comedy or musical",
+        "best tv series drama",
+        "best original song motion picture award",
+        "best television series",
+        "best actor in a tv series drama",
+        "best actress in a motion picture drama",
+        "best actor in a motion picture comedy or musical",
+        "best director"
+    ],
+    "award_data": {
+        "best screenplay - motion picture": {
+            "nominees": [
+                "American Horror Story: Asylum - Get Committed the Experience",
+                "The Newsroom",
+                "Our Homeland",
+                "Les Mis\u00e9rables",
+                "Downton Abbey Revisited"
+            ],
+            "potential_nominees": [],
+            "presenters": [
+                "amy poehler",
+                "jon hamm"
+            ],
+            "potential_presenters": [
+                "maggie smith",
+                "tina fey",
+                "catherine zeta-jones",
+                "bradley cooper",
+                "damian lewis",
+                "rob presentar",
+                "selena gomez",
+                "vanessa hudgens",
+                "kate hudson",
+                "paul rudd",
+                "les miserables",
+                "al verme",
+                "les mis",
+                "liza minnelli",
+                "rosario dawson",
+                "aida takkla o'reilly"
+            ],
+            "winner": "American Horror Story: Asylum - Get Committed the Experience"
+        },
+        "best director - motion picture": {
+            "nominees": [
+                "christoph waltz",
+                "tommy lee jones",
+                "tina fey",
+                "jennifer lawrence",
+                "amy poehler"
+            ],
+            "potential_nominees": [
+                "maggie smith",
+                "anne hathaway",
+                "kerry washington",
+                "kathryn bigelow",
+                "giorgio armani"
+            ],
+            "presenters": [
+                "amy poehler",
+                "tina fey"
+            ],
+            "potential_presenters": [
+                "bradley cooper",
+                "kate hudson",
+                "leonardo dicaprio",
+                "jennifer lawrence",
+                "christoph waltz",
+                "kerry washington",
+                "oscar award",
+                "anne hathaway",
+                "dennis quaid",
+                "george clooney",
+                "lena dunham"
+            ],
+            "winner": "christoph waltz"
+        },
+        "best performance by an actress in a television series - comedy or musical": {
+            "nominees": [
+                "lena dunham",
+                "amy poehler",
+                "george clooney",
+                "damien francisco",
+                "tina fey"
+            ],
+            "potential_nominees": [
+                "bill clinton",
+                "jennifer lopez",
+                "harry potter",
+                "claire danes",
+                "jessica chastain"
+            ],
+            "presenters": [
+                "jodie foster",
+                "bill clinton"
+            ],
+            "potential_presenters": [
+                "cecil b. demille",
+                "mel gibson",
+                "lena dunham",
+                "tina fey",
+                "amy poehler",
+                "lea michele",
+                "tommy lee jones",
+                "arnold schwarzenegger",
+                "tony stark",
+                "claire danes",
+                "sylvester stallone"
+            ],
+            "winner": "lena dunham"
+        },
+        "best foreign language film": {
+            "nominees": [
+                "Taylor Swift feat. The Civil Wars: Safe & Sound",
+                "Seth McFarlane: The Oscars Pycho and 007",
+                "The Newsroom",
+                "Argo",
+                "Life of Pi"
+            ],
+            "potential_nominees": [
+                "Les Mis\u00e9rables"
+            ],
+            "presenters": [
+                "ben affleck",
+                "jennifer lopez"
+            ],
+            "potential_presenters": [
+                "tony mendez",
+                "jessica alba",
+                "paul rudd",
+                "jason statham",
+                "taylor swift",
+                "selma hayek",
+                "jason statham presenting",
+                "kevin costner",
+                "maggie smith",
+                "amanda seyfried",
+                "selena gomez",
+                "vanessa hudgens",
+                "pedro picapiedra",
+                "john goodman",
+                "jon hamm",
+                "quentin tarantino's"
+            ],
+            "winner": "Taylor Swift feat. The Civil Wars: Safe & Sound"
+        },
+        "best performance by an actor in a supporting role in a motion picture": {
+            "nominees": [
+                "jennifer lawrence",
+                "tina fey",
+                "kerry washington",
+                "anne hathaway",
+                "kathryn bigelow"
+            ],
+            "potential_nominees": [
+                "amy poehler",
+                "rachel weisz",
+                "kevin costner",
+                "eric stonestreet",
+                "jessica chastain"
+            ],
+            "presenters": [
+                "amy poehler",
+                "tina fey"
+            ],
+            "potential_presenters": [
+                "jennifer lawrence",
+                "bradley cooper",
+                "kate hudson",
+                "oscar award",
+                "anne hathaway",
+                "ben affleck's",
+                "kerry washington",
+                "leonardo dicaprio",
+                "george clooney",
+                "lena dunham",
+                "hugh jackman"
+            ],
+            "winner": "anne hathaway"
+        },
+        "best performance by an actress in a supporting role in a series, mini-series or motion picture made for television": {
+            "nominees": [
+                "jessica lange",
+                "darcy st fudge",
+                "christoph waltz",
+                "maggie smith",
+                "julianne moore"
+            ],
+            "potential_nominees": [
+                "amy poehler",
+                "tommy lee jones",
+                "leonardo dicaprio",
+                "les mis",
+                "bill murray's"
+            ],
+            "presenters": [
+                "amy poehler",
+                "bradley cooper"
+            ],
+            "potential_presenters": [
+                "maggie smith",
+                "tina fey",
+                "kate hudson",
+                "selena gomez",
+                "vanessa hudgens",
+                "leonardo dicaprio",
+                "dennis quaid",
+                "christoph waltz",
+                "jennifer lawrence",
+                "taylor swift",
+                "catherine zeta-jones"
+            ],
+            "winner": "christoph waltz"
+        },
+        "best motion picture - comedy or musical": {
+            "nominees": [
+                "The Fashion Police",
+                "Danny & the Deep Blue Sea",
+                "The Giant Mechanical Man",
+                "Modern Family"
+            ],
+            "potential_nominees": [],
+            "presenters": [
+                "jennifer lawrence",
+                "amy poehler's"
+            ],
+            "potential_presenters": [
+                "ben affleck's",
+                "tina fey",
+                "oscar award",
+                "anne hathaway",
+                "hugh jackman",
+                "steven spielberg",
+                "kate capshaw's",
+                "kerry washington",
+                "bradley cooper",
+                "leonardo dicaprio",
+                "jessica alba",
+                "jay leno",
+                "kelly osbourne",
+                "george clooney",
+                "matt bomer",
+                "kate hudson"
+            ],
+            "winner": "The Fashion Police"
+        },
+        "best performance by an actress in a motion picture - comedy or musical": {
+            "nominees": [
+                "taylor swift",
+                "bill clinton",
+                "benedict cumberbatch",
+                "ethel kennedy",
+                "damian fransisco"
+            ],
+            "potential_nominees": [
+                "jessica lange",
+                "bryan cranston",
+                "tina fey",
+                "amy poehler",
+                "darcy st fudge"
+            ],
+            "presenters": [
+                "bill clinton",
+                "selena gomez"
+            ],
+            "potential_presenters": [
+                "vanessa hudgens",
+                "paul rudd",
+                "ben affleck",
+                "kevin costner",
+                "jennifer lopez",
+                "tony mendez",
+                "jessica alba",
+                "jon hamm",
+                "taylor swift",
+                "jason statham",
+                "maggie smith"
+            ],
+            "winner": "taylor swift"
+        },
+        "best mini-series or motion picture made for television": {
+            "nominees": [
+                "Game Change",
+                "Downton Abbey Revisited",
+                "Django Unchained",
+                "Life of Pi",
+                "Les Mis\u00e9rables"
+            ],
+            "potential_nominees": [
+                "CNN This Morning with Kasie Hunt",
+                "Oscar Etiquette",
+                "Rust and Bone"
+            ],
+            "presenters": [
+                "amy poehler",
+                "bradley cooper"
+            ],
+            "potential_presenters": [
+                "kate hudson",
+                "tina fey",
+                "maggie smith",
+                "christoph waltz",
+                "leonardo dicaprio",
+                "dennis quaid",
+                "selena gomez",
+                "vanessa hudgens",
+                "jennifer lawrence",
+                "kerry washington",
+                "daniel day-lewis",
+                "don cheadle",
+                "michael j",
+                "randy quaid",
+                "eva longoria",
+                "lea michele"
+            ],
+            "winner": "Game Change"
+        },
+        "best original score - motion picture": {
+            "nominees": [
+                "Life of Pi",
+                "The Newsroom",
+                "Seth McFarlane: The Oscars Pycho and 007",
+                "Taylor Swift feat. The Civil Wars: Safe & Sound",
+                "Adele: Skyfall"
+            ],
+            "potential_nominees": [
+                "Roddy Doyle, Boris Godunov, The Staves, TV Drama The Fear",
+                "Argo",
+                "Life of Pi"
+            ],
+            "presenters": [
+                "ben affleck",
+                "paul rudd"
+            ],
+            "potential_presenters": [
+                "jennifer lopez",
+                "selena gomez",
+                "vanessa hudgens",
+                "tony mendez",
+                "jason statham",
+                "jon hamm",
+                "taylor swift",
+                "amanda seyfried",
+                "selma hayek",
+                "jason statham presenting",
+                "maggie smith",
+                "pedro picapiedra",
+                "jeremy renner",
+                "john goodman",
+                "bradley cooper",
+                "con adele"
+            ],
+            "winner": "Adele: Skyfall"
+        },
+        "best performance by an actress in a television series - drama": {
+            "nominees": [
+                "claire danes",
+                "amy poehler",
+                "george clooney",
+                "lena dunham",
+                "jim parsons"
+            ],
+            "potential_nominees": [
+                "benedict cumberbatch",
+                "michelle dockery",
+                "glenn close",
+                "anne hathaway",
+                "connie britton's"
+            ],
+            "presenters": [
+                "bill clinton",
+                "sylvester stallone"
+            ],
+            "potential_presenters": [
+                "lea michele",
+                "tommy lee jones",
+                "arnold schwarzenegger",
+                "claire danes",
+                "lena dunham",
+                "tina fey",
+                "amy poehler's",
+                "quentin tarantino",
+                "michael haneke",
+                "ben affleck",
+                "jodie foster"
+            ],
+            "winner": "claire danes"
+        },
+        "best performance by an actress in a motion picture - drama": {
+            "nominees": [
+                "christoph waltz",
+                "tommy lee jones",
+                "tina fey",
+                "jennifer lawrence",
+                "amy poehler"
+            ],
+            "potential_nominees": [
+                "anne hathaway",
+                "kerry washington",
+                "kathryn bigelow",
+                "giorgio armani",
+                "leonardo dicaprio"
+            ],
+            "presenters": [
+                "amy poehler",
+                "tina fey"
+            ],
+            "potential_presenters": [
+                "bradley cooper",
+                "kate hudson",
+                "leonardo dicaprio",
+                "jennifer lawrence",
+                "oscar award",
+                "anne hathaway",
+                "christoph waltz",
+                "kerry washington",
+                "george clooney",
+                "lena dunham",
+                "daniel day-lewis"
+            ],
+            "winner": "jennifer lawrence"
+        },
+        "cecil b. demille award": {
+            "nominees": [
+                "ben affleck",
+                "amy poehler",
+                "george clooney",
+                "jodie foster",
+                "lena dunham"
+            ],
+            "potential_nominees": [
+                "tina fey",
+                "jennifer lopez",
+                "paul thomas anderson",
+                "mel gibson",
+                "anne hathaway"
+            ],
+            "presenters": [
+                "jodie foster",
+                "will ferrell"
+            ],
+            "potential_presenters": [
+                "bill clinton",
+                "cecil b. demille",
+                "mel gibson",
+                "ben affleck",
+                "tina fey",
+                "tony stark",
+                "lena dunham",
+                "amy poehler",
+                "tommy lee jones",
+                "jon hamm",
+                "lea michele presenting"
+            ],
+            "winner": "ben affleck"
+        },
+        "best performance by an actor in a motion picture - comedy or musical": {
+            "nominees": [
+                "taylor swift",
+                "bill clinton",
+                "benedict cumberbatch",
+                "ethel kennedy",
+                "damian fransisco"
+            ],
+            "potential_nominees": [
+                "jessica lange",
+                "bryan cranston",
+                "amy poehler",
+                "darcy st fudge",
+                "tina fey"
+            ],
+            "presenters": [
+                "bill clinton",
+                "paul rudd"
+            ],
+            "potential_presenters": [
+                "selena gomez",
+                "vanessa hudgens",
+                "ben affleck",
+                "kevin costner",
+                "jennifer lopez",
+                "tony mendez",
+                "jessica alba",
+                "jon hamm",
+                "taylor swift",
+                "jason statham",
+                "maggie smith"
+            ],
+            "winner": "bill clinton"
+        },
+        "best motion picture - drama": {
+            "nominees": [
+                "The Fashion Police",
+                "Danny & the Deep Blue Sea",
+                "The Giant Mechanical Man",
+                "Modern Family"
+            ],
+            "potential_nominees": [],
+            "presenters": [
+                "jennifer lawrence",
+                "amy poehler's"
+            ],
+            "potential_presenters": [
+                "ben affleck's",
+                "tina fey",
+                "oscar award",
+                "anne hathaway",
+                "hugh jackman",
+                "steven spielberg",
+                "kate capshaw's",
+                "kerry washington",
+                "bradley cooper",
+                "leonardo dicaprio",
+                "jessica alba",
+                "jay leno",
+                "kelly osbourne",
+                "george clooney",
+                "matt bomer",
+                "kate hudson"
+            ],
+            "winner": "The Fashion Police"
+        },
+        "best performance by an actor in a supporting role in a series, mini-series or motion picture made for television": {
+            "nominees": [
+                "anne hathaway",
+                "jim parsons",
+                "jennifer lawrence",
+                "mandy patinkin",
+                "bill clinton"
+            ],
+            "potential_nominees": [
+                "harry potter",
+                "meryl streep",
+                "kristen wiig",
+                "matt leblanc",
+                "tommy lee jones"
+            ],
+            "presenters": [
+                "bill clinton",
+                "tina fey"
+            ],
+            "potential_presenters": [
+                "amy poehler's",
+                "kristen wiig",
+                "will ferrell",
+                "les miserables",
+                "jeremy irons",
+                "quentin tarantino",
+                "jennifer lawrence",
+                "hugo chavez",
+                "anne hathaway",
+                "tommy lee jones",
+                "lindsay lohan"
+            ],
+            "winner": "anne hathaway"
+        },
+        "best performance by an actress in a supporting role in a motion picture": {
+            "nominees": [
+                "christoph waltz",
+                "tommy lee jones",
+                "tina fey",
+                "jennifer lawrence",
+                "amy poehler"
+            ],
+            "potential_nominees": [
+                "kerry washington",
+                "anne hathaway",
+                "kathryn bigelow",
+                "giorgio armani",
+                "leonardo dicaprio"
+            ],
+            "presenters": [
+                "amy poehler",
+                "tina fey"
+            ],
+            "potential_presenters": [
+                "bradley cooper",
+                "kate hudson",
+                "leonardo dicaprio",
+                "jennifer lawrence",
+                "oscar award",
+                "anne hathaway",
+                "christoph waltz",
+                "kerry washington",
+                "george clooney",
+                "lena dunham",
+                "daniel day-lewis"
+            ],
+            "winner": "christoph waltz"
+        },
+        "best television series - drama": {
+            "nominees": [
+                "Game Change",
+                "Downton Abbey Revisited",
+                "Modern Family",
+                "Life of Pi",
+                "American Horror Story: Asylum - Get Committed the Experience"
+            ],
+            "potential_nominees": [
+                "Oscar Etiquette",
+                "Les Mis\u00e9rables"
+            ],
+            "presenters": [
+                "maggie smith",
+                "amy poehler"
+            ],
+            "potential_presenters": [
+                "selena gomez",
+                "vanessa hudgens",
+                "tina fey",
+                "catherine zeta-jones",
+                "bradley cooper",
+                "dennis quaid",
+                "don cheadle",
+                "michael j",
+                "kate hudson",
+                "randy quaid",
+                "eva longoria",
+                "taylor swift",
+                "al verme",
+                "les mis",
+                "leonardo dicaprio",
+                "bruce jenner"
+            ],
+            "winner": "Game Change"
+        },
+        "best performance by an actor in a mini-series or motion picture made for television": {
+            "nominees": [
+                "kevin costner",
+                "bill clinton",
+                "jennifer lawrence",
+                "benedict cumberbatch",
+                "taylor swift"
+            ],
+            "potential_nominees": [
+                "ethel kennedy",
+                "damian fransisco",
+                "harry potter",
+                "will ferrell",
+                "kristen wiig"
+            ],
+            "presenters": [
+                "bill clinton",
+                "kristen wiig"
+            ],
+            "potential_presenters": [
+                "will ferrell",
+                "les miserables",
+                "amy poehler",
+                "kevin costner",
+                "tommy lee jones",
+                "jennifer lawrence",
+                "jessica alba",
+                "hugo chavez",
+                "selena gomez",
+                "vanessa hudgens",
+                "george w bush"
+            ],
+            "winner": "kevin costner"
+        },
+        "best performance by an actress in a mini-series or motion picture made for television": {
+            "nominees": [
+                "julianne moore",
+                "jessica lange",
+                "darcy st fudge",
+                "christoph waltz",
+                "maggie smith"
+            ],
+            "potential_nominees": [
+                "julianne moore",
+                "amy poehler",
+                "tommy lee jones",
+                "leonardo dicaprio",
+                "les mis"
+            ],
+            "presenters": [
+                "amy poehler",
+                "bradley cooper"
+            ],
+            "potential_presenters": [
+                "maggie smith",
+                "tina fey",
+                "kate hudson",
+                "selena gomez",
+                "vanessa hudgens",
+                "leonardo dicaprio",
+                "dennis quaid",
+                "christoph waltz",
+                "jennifer lawrence",
+                "taylor swift",
+                "catherine zeta-jones"
+            ],
+            "winner": "julianne moore"
+        },
+        "best animated feature film": {
+            "nominees": [
+                "The Newsroom",
+                "Our Homeland",
+                "Adele: Skyfall",
+                "Downton Abbey Revisited",
+                "The Twilight Saga: Breaking Dawn - Part 2"
+            ],
+            "potential_nominees": [
+                "Roddy Doyle, Boris Godunov, The Staves, TV Drama The Fear",
+                "The Walking Dead: A Telltale Game Series",
+                "Modern Mad Men",
+                "Downton Abbey Revisited"
+            ],
+            "presenters": [
+                "jon hamm",
+                "paul rudd"
+            ],
+            "potential_presenters": [
+                "selena gomez",
+                "vanessa hudgens",
+                "ben affleck",
+                "jennifer lopez",
+                "jason statham",
+                "tony mendez",
+                "maggie smith",
+                "amanda seyfried",
+                "selma hayek",
+                "rob presentar",
+                "taylor swift",
+                "pedro picapiedra",
+                "damian lewis",
+                "bradley cooper",
+                "con adele",
+                "jeremy renner"
+            ],
+            "winner": "The Newsroom"
+        },
+        "best original song - motion picture": {
+            "nominees": [
+                "Downton Abbey Revisited",
+                "Django Unchained",
+                "Oscar Etiquette",
+                "Les Mis\u00e9rables",
+                "Rust and Bone"
+            ],
+            "potential_nominees": [
+                "The Giant Mechanical Man"
+            ],
+            "presenters": [
+                "bradley cooper",
+                "kate hudson"
+            ],
+            "potential_presenters": [
+                "amy poehler",
+                "maggie smith",
+                "christoph waltz",
+                "leonardo dicaprio",
+                "tina fey",
+                "dennis quaid",
+                "selena gomez",
+                "vanessa hudgens",
+                "kerry washington",
+                "jennifer lawrence",
+                "daniel day-lewis",
+                "don cheadle",
+                "michael j",
+                "taylor swift",
+                "randy quaid",
+                "eva longoria"
+            ],
+            "winner": "Downton Abbey Revisited"
+        },
+        "best performance by an actor in a motion picture - drama": {
+            "nominees": [
+                "jessica lange",
+                "darcy st fudge",
+                "christoph waltz",
+                "maggie smith",
+                "julianne moore"
+            ],
+            "potential_nominees": [
+                "amy poehler",
+                "tommy lee jones",
+                "leonardo dicaprio",
+                "les mis",
+                "bill murray's"
+            ],
+            "presenters": [
+                "amy poehler",
+                "tina fey"
+            ],
+            "potential_presenters": [
+                "bradley cooper",
+                "maggie smith",
+                "kate hudson",
+                "leonardo dicaprio",
+                "selena gomez",
+                "vanessa hudgens",
+                "dennis quaid",
+                "christoph waltz",
+                "jennifer lawrence",
+                "taylor swift",
+                "catherine zeta-jones"
+            ],
+            "winner": "jessica lange"
+        },
+        "best television series - comedy or musical": {
+            "nominees": [
+                "The Big Bang Theory: It All Started with a Big Bang",
+                "Les Mis\u00e9rables",
+                "Seth McFarlane: The Oscars Pycho and 007",
+                "Oscar Week Foreign Film Symposium",
+                "Hotel Transylvania"
+            ],
+            "potential_nominees": [
+                "Top 5 Best & Worst Animated Films of 2011",
+                "Inglourious Basterds: Remake"
+            ],
+            "presenters": [
+                "bill clinton",
+                "jeremy irons"
+            ],
+            "potential_presenters": [
+                "quentin tarantino",
+                "arnold schwarzenegger",
+                "amy poehler's",
+                "tina fey",
+                "sylvester stallone",
+                "kristen wiig",
+                "debra messing",
+                "lucy liu",
+                "sly stallone",
+                "will ferrell",
+                "lindsay lohan",
+                "tommy lee jones",
+                "lea michele",
+                "les miserables",
+                "louis c.k.",
+                "amanda seyfried"
+            ],
+            "winner": "The Big Bang Theory: It All Started with a Big Bang"
+        },
+        "best performance by an actor in a television series - drama": {
+            "nominees": [
+                "damian lewis",
+                "jessica lange",
+                "taylor swift",
+                "bryan cranston",
+                "darcy st fudge"
+            ],
+            "potential_nominees": [
+                "damian lewis",
+                "john williams",
+                "ethel kennedy",
+                "amy poehler",
+                "jon hamm"
+            ],
+            "presenters": [
+                "jon hamm",
+                "paul rudd"
+            ],
+            "potential_presenters": [
+                "selena gomez",
+                "vanessa hudgens",
+                "ben affleck",
+                "jennifer lopez",
+                "tina fey",
+                "amy poehler",
+                "tony mendez",
+                "jason statham",
+                "maggie smith",
+                "taylor swift",
+                "amanda seyfried"
+            ],
+            "winner": "damian lewis"
+        },
+        "best performance by an actor in a television series - comedy or musical": {
+            "nominees": [
+                "don cheadle",
+                "jim parsons",
+                "claire danes",
+                "anne hathaway",
+                "matt leblanc"
+            ],
+            "potential_nominees": [
+                "louis c.k.",
+                "jeremy irons",
+                "mandy patinkin",
+                "meryl streep",
+                "michelle dockery"
+            ],
+            "presenters": [
+                "bill clinton",
+                "jeremy irons"
+            ],
+            "potential_presenters": [
+                "quentin tarantino",
+                "tina fey",
+                "amy poehler's",
+                "sylvester stallone",
+                "arnold schwarzenegger",
+                "lea michele",
+                "kristen wiig",
+                "tommy lee jones",
+                "claire danes",
+                "debra messing",
+                "lucy liu"
+            ],
+            "winner": "don cheadle"
+        }
+    }
 }

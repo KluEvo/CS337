@@ -10,7 +10,7 @@ def clean_dictionary(dictionary):
     for key in sorted_data:
         add_key = True
         for cleaned_key in cleaned_dict:
-            if fuzz.ratio(key, cleaned_key) > 80 or key in cleaned_key:
+            if fuzz.token_sort_ratio(key, cleaned_key) > 80 or key in cleaned_key:
                 cleaned_dict[cleaned_key] += sorted_data[key]
                 add_key = False
                 break

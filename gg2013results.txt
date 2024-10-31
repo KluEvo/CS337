@@ -1,41 +1,223 @@
-Host(s): Tina Fey, Amy Poehler
+Host(s): Tina, Amy, Amy Poehler, Tina Fey
 
 Mined Awards: 
-	best actor in a miniseries tv movie
-	best supporting actress
-	best comedy actress in a television series
-	best motion picture comedy or musical
-	best tv series drama
-	best screenplay
-	best actor in a motion picture drama
-	best supporting actor motion picture
-	best actress in a miniseries tv movie
-	best television series
-	best original song motion picture award
-	best actress in a tv comedy or musical
-	best director
-	best actress in a motion picture comedy or musical
 	best supporting actor
-	best actress in a tv series drama
+	best motion picture comedy or musical
+	best comedy actress in a television series
 	best miniseries tv movie
-	best original song
-	best supporting actress tv series miniseries or tv movie
-	best foreign language film
-	best actor in a tv comedy or musical
-	best actor in a tv series drama
-	best comedy actor in a television series
+	best actress in a tv series drama
 	best tv comedy or musical
-	cecil b. demille
-	best actor in a motion picture comedy or musical
-	best actress in a motion picture drama
-	best supporting actress motion picture
-	best actress tv series  comedy or musical
+	best actress in a motion picture comedy or musical
 	best motion picture screenplay
-	best motion picture drama
-	best actor tv series  comedy or musical
-	best supporting actor tv series miniseries or tv movie
+	best comedy actor in a television series
+	best supporting actor motion picture
 	best animated feature film
+	best supporting actress
+	best supporting actor tv series miniseries or tv movie
+	cecil b. demille
+	best actor in a miniseries tv movie
+	best supporting actress tv series miniseries or tv movie
+	best motion picture drama
+	best original song
+	best actor in a motion picture drama
+	best screenplay
+	best supporting actress motion picture
+	best foreign language film
+	best actress in a miniseries tv movie
+	best actress tv series  comedy or musical
+	best actor in a tv comedy or musical
+	best actor tv series  comedy or musical
+	best actress in a tv comedy or musical
+	best tv series drama
+	best original song motion picture award
+	best television series
+	best actor in a tv series drama
+	best actress in a motion picture drama
+	best actor in a motion picture comedy or musical
+	best director
+
+Award: best screenplay - motion picture
+Presenters: amy poehler, jon hamm
+All Potential Mined Presenters: maggie smith, tina fey, catherine zeta-jones, bradley cooper, damian lewis, rob presentar, selena gomez, vanessa hudgens, kate hudson, paul rudd, les miserables, al verme, les mis, liza minnelli, rosario dawson, aida takkla o'reilly
+Nominees: American Horror Story: Asylum - Get Committed the Experience, The Newsroom, Our Homeland, Les Misérables, Downton Abbey Revisited
+All Potential Mined Nominees: 
+Winner: American Horror Story: Asylum - Get Committed the Experience
+
+Award: best director - motion picture
+Presenters: amy poehler, tina fey
+All Potential Mined Presenters: bradley cooper, kate hudson, leonardo dicaprio, jennifer lawrence, christoph waltz, kerry washington, oscar award, anne hathaway, dennis quaid, george clooney, lena dunham
+Nominees: christoph waltz, tommy lee jones, tina fey, jennifer lawrence, amy poehler
+All Potential Mined Nominees: maggie smith, anne hathaway, kerry washington, kathryn bigelow, giorgio armani
+Winner: christoph waltz
+
+Award: best performance by an actress in a television series - comedy or musical
+Presenters: jodie foster, bill clinton
+All Potential Mined Presenters: cecil b. demille, mel gibson, lena dunham, tina fey, amy poehler, lea michele, tommy lee jones, arnold schwarzenegger, tony stark, claire danes, sylvester stallone
+Nominees: lena dunham, amy poehler, george clooney, damien francisco, tina fey
+All Potential Mined Nominees: bill clinton, jennifer lopez, harry potter, claire danes, jessica chastain
+Winner: lena dunham
+
+Award: best foreign language film
+Presenters: ben affleck, jennifer lopez
+All Potential Mined Presenters: tony mendez, jessica alba, paul rudd, jason statham, taylor swift, selma hayek, jason statham presenting, kevin costner, maggie smith, amanda seyfried, selena gomez, vanessa hudgens, pedro picapiedra, john goodman, jon hamm, quentin tarantino's
+Nominees: Taylor Swift feat. The Civil Wars: Safe & Sound, Seth McFarlane: The Oscars Pycho and 007, The Newsroom, Argo, Life of Pi
+All Potential Mined Nominees: Les Misérables
+Winner: Taylor Swift feat. The Civil Wars: Safe & Sound
+
+Award: best performance by an actor in a supporting role in a motion picture
+Presenters: amy poehler, tina fey
+All Potential Mined Presenters: jennifer lawrence, bradley cooper, kate hudson, oscar award, anne hathaway, ben affleck's, kerry washington, leonardo dicaprio, george clooney, lena dunham, hugh jackman
+Nominees: jennifer lawrence, tina fey, kerry washington, anne hathaway, kathryn bigelow
+All Potential Mined Nominees: amy poehler, rachel weisz, kevin costner, eric stonestreet, jessica chastain
+Winner: anne hathaway
+
+Award: best performance by an actress in a supporting role in a series, mini-series or motion picture made for television
+Presenters: amy poehler, bradley cooper
+All Potential Mined Presenters: maggie smith, tina fey, kate hudson, selena gomez, vanessa hudgens, leonardo dicaprio, dennis quaid, christoph waltz, jennifer lawrence, taylor swift, catherine zeta-jones
+Nominees: jessica lange, darcy st fudge, christoph waltz, maggie smith, julianne moore
+All Potential Mined Nominees: amy poehler, tommy lee jones, leonardo dicaprio, les mis, bill murray's
+Winner: christoph waltz
+
+Award: best motion picture - comedy or musical
+Presenters: jennifer lawrence, amy poehler's
+All Potential Mined Presenters: ben affleck's, tina fey, oscar award, anne hathaway, hugh jackman, steven spielberg, kate capshaw's, kerry washington, bradley cooper, leonardo dicaprio, jessica alba, jay leno, kelly osbourne, george clooney, matt bomer, kate hudson
+Nominees: The Fashion Police, Danny & the Deep Blue Sea, The Giant Mechanical Man, Modern Family
+All Potential Mined Nominees: 
+Winner: The Fashion Police
+
+Award: best performance by an actress in a motion picture - comedy or musical
+Presenters: bill clinton, selena gomez
+All Potential Mined Presenters: vanessa hudgens, paul rudd, ben affleck, kevin costner, jennifer lopez, tony mendez, jessica alba, jon hamm, taylor swift, jason statham, maggie smith
+Nominees: taylor swift, bill clinton, benedict cumberbatch, ethel kennedy, damian fransisco
+All Potential Mined Nominees: jessica lange, bryan cranston, tina fey, amy poehler, darcy st fudge
+Winner: taylor swift
+
+Award: best mini-series or motion picture made for television
+Presenters: amy poehler, bradley cooper
+All Potential Mined Presenters: kate hudson, tina fey, maggie smith, christoph waltz, leonardo dicaprio, dennis quaid, selena gomez, vanessa hudgens, jennifer lawrence, kerry washington, daniel day-lewis, don cheadle, michael j, randy quaid, eva longoria, lea michele
+Nominees: Game Change, Downton Abbey Revisited, Django Unchained, Life of Pi, Les Misérables
+All Potential Mined Nominees: CNN This Morning with Kasie Hunt, Oscar Etiquette, Rust and Bone
+Winner: Game Change
+
+Award: best original score - motion picture
+Presenters: ben affleck, paul rudd
+All Potential Mined Presenters: jennifer lopez, selena gomez, vanessa hudgens, tony mendez, jason statham, jon hamm, taylor swift, amanda seyfried, selma hayek, jason statham presenting, maggie smith, pedro picapiedra, jeremy renner, john goodman, bradley cooper, con adele
+Nominees: Life of Pi, The Newsroom, Seth McFarlane: The Oscars Pycho and 007, Taylor Swift feat. The Civil Wars: Safe & Sound, Adele: Skyfall
+All Potential Mined Nominees: Roddy Doyle, Boris Godunov, The Staves, TV Drama The Fear, Argo, Life of Pi
+Winner: Adele: Skyfall
+
+Award: best performance by an actress in a television series - drama
+Presenters: bill clinton, sylvester stallone
+All Potential Mined Presenters: lea michele, tommy lee jones, arnold schwarzenegger, claire danes, lena dunham, tina fey, amy poehler's, quentin tarantino, michael haneke, ben affleck, jodie foster
+Nominees: claire danes, amy poehler, george clooney, lena dunham, jim parsons
+All Potential Mined Nominees: benedict cumberbatch, michelle dockery, glenn close, anne hathaway, connie britton's
+Winner: claire danes
+
+Award: best performance by an actress in a motion picture - drama
+Presenters: amy poehler, tina fey
+All Potential Mined Presenters: bradley cooper, kate hudson, leonardo dicaprio, jennifer lawrence, oscar award, anne hathaway, christoph waltz, kerry washington, george clooney, lena dunham, daniel day-lewis
+Nominees: christoph waltz, tommy lee jones, tina fey, jennifer lawrence, amy poehler
+All Potential Mined Nominees: anne hathaway, kerry washington, kathryn bigelow, giorgio armani, leonardo dicaprio
+Winner: jennifer lawrence
+
+Award: cecil b. demille award
+Presenters: jodie foster, will ferrell
+All Potential Mined Presenters: bill clinton, cecil b. demille, mel gibson, ben affleck, tina fey, tony stark, lena dunham, amy poehler, tommy lee jones, jon hamm, lea michele presenting
+Nominees: ben affleck, amy poehler, george clooney, jodie foster, lena dunham
+All Potential Mined Nominees: tina fey, jennifer lopez, paul thomas anderson, mel gibson, anne hathaway
+Winner: ben affleck
+
+Award: best performance by an actor in a motion picture - comedy or musical
+Presenters: bill clinton, paul rudd
+All Potential Mined Presenters: selena gomez, vanessa hudgens, ben affleck, kevin costner, jennifer lopez, tony mendez, jessica alba, jon hamm, taylor swift, jason statham, maggie smith
+Nominees: taylor swift, bill clinton, benedict cumberbatch, ethel kennedy, damian fransisco
+All Potential Mined Nominees: jessica lange, bryan cranston, amy poehler, darcy st fudge, tina fey
+Winner: bill clinton
+
+Award: best motion picture - drama
+Presenters: jennifer lawrence, amy poehler's
+All Potential Mined Presenters: ben affleck's, tina fey, oscar award, anne hathaway, hugh jackman, steven spielberg, kate capshaw's, kerry washington, bradley cooper, leonardo dicaprio, jessica alba, jay leno, kelly osbourne, george clooney, matt bomer, kate hudson
+Nominees: The Fashion Police, Danny & the Deep Blue Sea, The Giant Mechanical Man, Modern Family
+All Potential Mined Nominees: 
+Winner: The Fashion Police
+
+Award: best performance by an actor in a supporting role in a series, mini-series or motion picture made for television
+Presenters: bill clinton, tina fey
+All Potential Mined Presenters: amy poehler's, kristen wiig, will ferrell, les miserables, jeremy irons, quentin tarantino, jennifer lawrence, hugo chavez, anne hathaway, tommy lee jones, lindsay lohan
+Nominees: anne hathaway, jim parsons, jennifer lawrence, mandy patinkin, bill clinton
+All Potential Mined Nominees: harry potter, meryl streep, kristen wiig, matt leblanc, tommy lee jones
+Winner: anne hathaway
+
+Award: best performance by an actress in a supporting role in a motion picture
+Presenters: amy poehler, tina fey
+All Potential Mined Presenters: bradley cooper, kate hudson, leonardo dicaprio, jennifer lawrence, oscar award, anne hathaway, christoph waltz, kerry washington, george clooney, lena dunham, daniel day-lewis
+Nominees: christoph waltz, tommy lee jones, tina fey, jennifer lawrence, amy poehler
+All Potential Mined Nominees: kerry washington, anne hathaway, kathryn bigelow, giorgio armani, leonardo dicaprio
+Winner: christoph waltz
+
+Award: best television series - drama
+Presenters: maggie smith, amy poehler
+All Potential Mined Presenters: selena gomez, vanessa hudgens, tina fey, catherine zeta-jones, bradley cooper, dennis quaid, don cheadle, michael j, kate hudson, randy quaid, eva longoria, taylor swift, al verme, les mis, leonardo dicaprio, bruce jenner
+Nominees: Game Change, Downton Abbey Revisited, Modern Family, Life of Pi, American Horror Story: Asylum - Get Committed the Experience
+All Potential Mined Nominees: Oscar Etiquette, Les Misérables
+Winner: Game Change
+
+Award: best performance by an actor in a mini-series or motion picture made for television
+Presenters: bill clinton, kristen wiig
+All Potential Mined Presenters: will ferrell, les miserables, amy poehler, kevin costner, tommy lee jones, jennifer lawrence, jessica alba, hugo chavez, selena gomez, vanessa hudgens, george w bush
+Nominees: kevin costner, bill clinton, jennifer lawrence, benedict cumberbatch, taylor swift
+All Potential Mined Nominees: ethel kennedy, damian fransisco, harry potter, will ferrell, kristen wiig
+Winner: kevin costner
+
+Award: best performance by an actress in a mini-series or motion picture made for television
+Presenters: amy poehler, bradley cooper
+All Potential Mined Presenters: maggie smith, tina fey, kate hudson, selena gomez, vanessa hudgens, leonardo dicaprio, dennis quaid, christoph waltz, jennifer lawrence, taylor swift, catherine zeta-jones
+Nominees: julianne moore, jessica lange, darcy st fudge, christoph waltz, maggie smith
+All Potential Mined Nominees: julianne moore, amy poehler, tommy lee jones, leonardo dicaprio, les mis
+Winner: julianne moore
+
+Award: best animated feature film
+Presenters: jon hamm, paul rudd
+All Potential Mined Presenters: selena gomez, vanessa hudgens, ben affleck, jennifer lopez, jason statham, tony mendez, maggie smith, amanda seyfried, selma hayek, rob presentar, taylor swift, pedro picapiedra, damian lewis, bradley cooper, con adele, jeremy renner
+Nominees: The Newsroom, Our Homeland, Adele: Skyfall, Downton Abbey Revisited, The Twilight Saga: Breaking Dawn - Part 2
+All Potential Mined Nominees: Roddy Doyle, Boris Godunov, The Staves, TV Drama The Fear, The Walking Dead: A Telltale Game Series, Modern Mad Men, Downton Abbey Revisited
+Winner: The Newsroom
+
+Award: best original song - motion picture
+Presenters: bradley cooper, kate hudson
+All Potential Mined Presenters: amy poehler, maggie smith, christoph waltz, leonardo dicaprio, tina fey, dennis quaid, selena gomez, vanessa hudgens, kerry washington, jennifer lawrence, daniel day-lewis, don cheadle, michael j, taylor swift, randy quaid, eva longoria
+Nominees: Downton Abbey Revisited, Django Unchained, Oscar Etiquette, Les Misérables, Rust and Bone
+All Potential Mined Nominees: The Giant Mechanical Man
+Winner: Downton Abbey Revisited
+
+Award: best performance by an actor in a motion picture - drama
+Presenters: amy poehler, tina fey
+All Potential Mined Presenters: bradley cooper, maggie smith, kate hudson, leonardo dicaprio, selena gomez, vanessa hudgens, dennis quaid, christoph waltz, jennifer lawrence, taylor swift, catherine zeta-jones
+Nominees: jessica lange, darcy st fudge, christoph waltz, maggie smith, julianne moore
+All Potential Mined Nominees: amy poehler, tommy lee jones, leonardo dicaprio, les mis, bill murray's
+Winner: jessica lange
+
+Award: best television series - comedy or musical
+Presenters: bill clinton, jeremy irons
+All Potential Mined Presenters: quentin tarantino, arnold schwarzenegger, amy poehler's, tina fey, sylvester stallone, kristen wiig, debra messing, lucy liu, sly stallone, will ferrell, lindsay lohan, tommy lee jones, lea michele, les miserables, louis c.k., amanda seyfried
+Nominees: The Big Bang Theory: It All Started with a Big Bang, Les Misérables, Seth McFarlane: The Oscars Pycho and 007, Oscar Week Foreign Film Symposium, Hotel Transylvania
+All Potential Mined Nominees: Top 5 Best & Worst Animated Films of 2011, Inglourious Basterds: Remake
+Winner: The Big Bang Theory: It All Started with a Big Bang
+
+Award: best performance by an actor in a television series - drama
+Presenters: jon hamm, paul rudd
+All Potential Mined Presenters: selena gomez, vanessa hudgens, ben affleck, jennifer lopez, tina fey, amy poehler, tony mendez, jason statham, maggie smith, taylor swift, amanda seyfried
+Nominees: damian lewis, jessica lange, taylor swift, bryan cranston, darcy st fudge
+All Potential Mined Nominees: damian lewis, john williams, ethel kennedy, amy poehler, jon hamm
+Winner: damian lewis
+
+Award: best performance by an actor in a television series - comedy or musical
+Presenters: bill clinton, jeremy irons
+All Potential Mined Presenters: quentin tarantino, tina fey, amy poehler's, sylvester stallone, arnold schwarzenegger, lea michele, kristen wiig, tommy lee jones, claire danes, debra messing, lucy liu
+Nominees: don cheadle, jim parsons, claire danes, anne hathaway, matt leblanc
+All Potential Mined Nominees: louis c.k., jeremy irons, mandy patinkin, meryl streep, michelle dockery
+Winner: don cheadle
 
 Best Dressed: Kate Hudson
-Worst Dressed: Claire Danes-Style
+Worst Dressed: Sienna Miller
 Controversially Dressed: Kate Hudson
