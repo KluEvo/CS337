@@ -5,3 +5,6 @@ numpy
 textblob
 nltk
 imdbpy
+ftfy
+unidecode
+langdetect

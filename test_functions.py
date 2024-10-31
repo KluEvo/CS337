@@ -1,6 +1,8 @@
 import json
 import re
 import spacy
+import nltk
+import ssl
 from ftfy import fix_text
 from unidecode import unidecode
 from fuzzywuzzy import fuzz
@@ -10,6 +12,17 @@ from nltk.corpus import names
 from rapidfuzz import process, fuzz
 from imdb import IMDb
 import helperFuncs as hf
+
+# Attempt to bypass SSL certificate verification
+try:
+    _create_unverified_https_context = ssl._create_unverified_context
+except AttributeError:
+    pass
+else:
+    ssl._create_default_https_context = _create_unverified_https_context
+nltk.download('names')
+nltk.download('averaged_perceptron_tagger_eng')
+nltk.download('wordnet')
 
 ### SOME LOADING
 spacy_model = spacy.load("en_core_web_sm")

@@ -4,7 +4,7 @@
 2. Create and activate virtual environment in the project directory.
 
 - For macOS:
-  - first create the venv: `python3 -m venv venv`
+  - first create the venv: `python3.10 -m venv venv`
   - then activate: `source venv/bin/activate`
 - For Windows:
   - first create the venv `python -m venv venv`
@@ -14,8 +14,9 @@
 
 3. Download the requirements:
    `pip install -r requirements.txt`
-4. Download the SpaCy model:
+4. Download the SpaCy models:
    `python -m spacy download en_core_web_sm`
+   `python -m spacy download en_core_web_trf`
 
 # How to Run
 
