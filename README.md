@@ -34,8 +34,9 @@ https://github.com/KluEvo/CS337
 
 Here is what you can find in the `gg{year}results.txt` human readable result:
 
-- additional goal: red carpet goal with best, worst, and most controversially dressed
+- **additional bonus goal: red carpet goal with best, worst, and most controversially dressed**
 - all potential mined presenters (that did not end up being chosen as the presenter of an award)
 - all potential mined nominees (that did not end up being chosen as the nominees of an award)
+- **we also submitted on time prior to the final extension ([canvas announcement about small bonus](https://canvas.northwestern.edu/courses/217301/discussion_topics/1553820))**
 
 `get_nominees()`, `get_winner()`, `get_presenter()`, are run on a hardcoded list of award names, as described in the assignment. These are defined at the beginning of the `python gg_api.py` if they need to be changed to test a different year.
